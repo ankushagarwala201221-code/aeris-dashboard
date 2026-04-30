@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AERIS System</title>
+
+<script src="https://cdn.tailwindcss.com"></script>
+
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+</head>
+
+<body class="bg-slate-900 text-white">
+
+<!-- HEADER -->
+<div class="text-center p-6">
+  <h1 class="text-3xl font-bold">AERIS</h1>
+  <p class="text-gray-400">Atmospheric Environmental Risk Intelligence System</p>
+</div>
+
+<!-- OVERVIEW -->
+<div class="p-4 max-w-3xl mx-auto text-center">
+  <h2 class="text-xl font-semibold">Overview</h2>
+  <p class="text-gray-400 mt-2">
+    AERIS is a system designed to estimate visibility degradation by analyzing environmental parameters such as particulate matter, temperature, and humidity using scientific modeling.
+  </p>
+</div>
+
+<!-- LIVE DATA -->
+<div class="grid grid-cols-2 gap-4 p-4 max-w-3xl mx-auto">
+
+  <div class="bg-slate-800 p-4 rounded-xl text-center">
+    <p>PM2.5</p>
+    <p id="pm" class="text-xl font-bold">--</p>
+  </div>
+
+  <div class="bg-slate-800 p-4 rounded-xl text-center">
+    <p>Temperature</p>
+    <p id="temp" class="text-xl font-bold">--</p>
+  </div>
+
+  <div class="bg-slate-800 p-4 rounded-xl text-center">
+    <p>Humidity</p>
+    <p id="hum" class="text-xl font-bold">--</p>
+  </div>
+
+  <div class="bg-slate-800 p-4 rounded-xl text-center">
+    <p>VRI</p>
+    <p id="vri" class="text-xl font-bold">--</p>
+  </div>
+
+</div>
+
+<!-- STATUS -->
+<div class="text-center mt-4">
+  <h2 id="status" class="text-2xl font-bold">--</h2>
+  <p id="message" class="text-gray-400"></p>
+</div>
+
+<!-- PRINCIPLES -->
+<div class="p-6 max-w-3xl mx-auto">
+  <h2 class="text-xl font-semibold">Scientific Principles</h2>
+
+  <ul class="text-gray-400 mt-2 space-y-2">
+    <li>• Light attenuation and scattering in atmosphere</li>
+    <li>• Relationship between particulate matter and visibility</li>
+    <li>• Environmental influence on optical clarity</li>
+  </ul>
+</div>
+
+<!-- SYSTEM -->
+<div class="p-6 max-w-3xl mx-auto">
+  <h2 class="text-xl font-semibold">System Architecture</h2>
+
+  <p class="text-gray-400 mt-2">
+    Sensor Node (ESP32) → Cloud Database → Web Dashboard
+  </p>
+</div>
+
+<!-- FUTURE -->
+<div class="p-6 max-w-3xl mx-auto">
+  <h2 class="text-xl font-semibold">Future Enhancements</h2>
+
+  <ul class="text-gray-400 mt-2 space-y-2">
+    <li>• GPS-based mapping</li>
+    <li>• Predictive risk modeling</li>
+    <li>• Alert system for real-time warnings</li>
+  </ul>
+</div>
+
+<script>
+
+// 🔴 ADD YOUR FIREBASE CONFIG
+const firebaseConfig = {
+  apiKey: "AIzaSyCFcOMkIMOSLhVuw_iFpBdrH5w2ABDMsXc",
+  authDomain: "aeris-dashboard.firebaseapp.com",
+  databaseURL: "https://aeris-dashboard-default-rtdb.asia-southeast1.firebasedatabase.app/",
+  projectId: "aeris-dashboard",
+  storageBucket: "aeris-dashboard.firebasestorage.app",
+  messagingSenderId: "782547152481",
+  appId: "1:782547152481:web:5dd3b9ccc6cde3dc04c420"
+};
+
+firebase.initializeApp(firebaseConfig);
+const db = firebase.database();
+
+// FETCH DATA
+db.ref("data").on("value", snapshot => {
+  const d = snapshot.val();
+  if(!d) return;
+
+  pm.innerText = d.pm;
+  temp.innerText = d.temp;
+  hum.innerText = d.hum;
+  vri.innerText = d.vri;
+
+  let status="SAFE", msg="Clear conditions";
+
+  if(d.vri > 70){
+    status="DANGER";
+    msg="Avoid travel";
+  } else if(d.vri > 40){
+    status="MODERATE";
+    msg="Reduced visibility";
+  }
+
+  document.getElementById("status").innerText = status;
+  document.getElementById("message").innerText = msg;
+});
+
+</script>
+
+</body>
+</html>
