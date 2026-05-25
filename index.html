@@ -7,7 +7,7 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>AERIS FUTURE DASHBOARD</title>
+<title>AERIS NEXT GEN DASHBOARD</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 
@@ -15,310 +15,115 @@
 
 <style>
 
-*{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-}
-
 body{
 
-  font-family:'Poppins',sans-serif;
+  margin:0;
 
-  background:
-  linear-gradient(135deg,#050816,#0a1026,#111b3a);
+  font-family:Poppins;
+
+  background:linear-gradient(135deg,#050816,#0a1026,#111b3a);
 
   color:white;
 
-  min-height:100vh;
-
-  overflow-x:hidden;
 }
 
-/* Glow Background */
-
-body::before{
-
-  content:"";
-
-  position:fixed;
-
-  width:600px;
-  height:600px;
-
-  background:cyan;
-
-  filter:blur(220px);
-
-  opacity:0.10;
-
-  top:-200px;
-  left:-150px;
-
-  z-index:-1;
-}
-
-body::after{
-
-  content:"";
-
-  position:fixed;
-
-  width:500px;
-  height:500px;
-
-  background:#00ff88;
-
-  filter:blur(220px);
-
-  opacity:0.08;
-
-  bottom:-150px;
-  right:-120px;
-
-  z-index:-1;
-}
+/* HEADER */
 
 header{
 
-  padding:40px;
-
   text-align:center;
-}
-
-header h1{
-
-  font-size:3rem;
-
-  letter-spacing:4px;
-
-  color:#00ffff;
-
-  text-shadow:0 0 20px cyan;
-}
-
-header p{
-
-  margin-top:10px;
-
-  color:#aaa;
-
-  font-size:1rem;
-}
-
-.live{
-
-  display:inline-block;
-
-  width:12px;
-  height:12px;
-
-  border-radius:50%;
-
-  background:#00ff88;
-
-  margin-left:10px;
-
-  animation:pulse 1s infinite;
-}
-
-@keyframes pulse{
-
-  0%{
-    transform:scale(1);
-    opacity:1;
-  }
-
-  50%{
-    transform:scale(1.5);
-    opacity:0.5;
-  }
-
-  100%{
-    transform:scale(1);
-    opacity:1;
-  }
-}
-
-.container{
-
-  width:90%;
-
-  margin:auto;
-
-  display:grid;
-
-  grid-template-columns:
-  repeat(auto-fit,minmax(250px,1fr));
-
-  gap:25px;
-}
-
-.card{
-
-  background:
-  rgba(255,255,255,0.05);
-
-  border-radius:25px;
 
   padding:30px;
 
-  backdrop-filter:blur(15px);
-
-  border:1px solid rgba(255,255,255,0.08);
-
-  transition:0.3s;
 }
 
-.card:hover{
-
-  transform:translateY(-10px);
-
-  box-shadow:
-  0 0 25px rgba(0,255,255,0.25);
-}
-
-.card h2{
+h1{
 
   color:#00ffff;
 
-  margin-bottom:15px;
+  font-size:3rem;
+
 }
 
-.value{
+/* GRID */
 
-  font-size:2.7rem;
-
-  font-weight:600;
-}
-
-.status{
-
-  margin-top:12px;
-
-  color:#bbb;
-}
-
-.safe{
-
-  color:#00ff99;
-}
-
-.moderate{
-
-  color:#ffd000;
-}
-
-.danger{
-
-  color:#ff4444;
-}
-
-/* INFO SECTION */
-
-.section-title{
-
-  text-align:center;
-
-  margin-top:80px;
-  margin-bottom:40px;
-
-  font-size:2.5rem;
-
-  color:cyan;
-}
-
-.info-section{
-
-  width:90%;
-
-  margin:auto;
-}
-
-.info-grid{
+.container{
 
   display:grid;
 
-  grid-template-columns:
-  repeat(auto-fit,minmax(300px,1fr));
+  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
 
-  gap:30px;
+  gap:20px;
+
+  padding:20px;
 }
 
-.info-card{
+/* CARD */
 
-  background:
-  rgba(255,255,255,0.05);
+.card{
 
-  border-radius:25px;
-
-  overflow:hidden;
-
-  backdrop-filter:blur(15px);
-
-  border:1px solid rgba(255,255,255,0.08);
-
-  transition:0.3s;
-}
-
-.info-card:hover{
-
-  transform:translateY(-10px);
-
-  box-shadow:
-  0 0 25px rgba(0,255,255,0.25);
-}
-
-.info-img{
-
-  width:100%;
-
-  height:220px;
-
-  object-fit:cover;
-}
-
-.info-card h2{
+  background:rgba(255,255,255,0.05);
 
   padding:20px;
 
-  color:#00ffff;
+  border-radius:20px;
+
+  backdrop-filter:blur(10px);
+
+  border:1px solid rgba(255,255,255,0.1);
+
 }
 
-.info-card p{
+/* STATUS */
 
-  padding:0 20px 20px 20px;
+.safe{color:#00ff99;}
 
-  line-height:1.8;
+.mid{color:#ffd000;}
 
-  color:#ccc;
+.danger{color:#ff4444;}
+
+/* POPUP */
+
+.popup{
+
+  position:fixed;
+
+  top:20px;
+
+  right:20px;
+
+  background:rgba(0,255,255,0.1);
+
+  padding:15px;
+
+  border:1px solid cyan;
+
+  border-radius:10px;
+
+  animation:fade 5s forwards;
+}
+
+@keyframes fade{
+
+  0%{opacity:0}
+  10%{opacity:1}
+  80%{opacity:1}
+  100%{opacity:0}
 }
 
 /* CHART */
 
-.chart-container{
+.chart-box{
 
   width:90%;
 
-  margin:80px auto;
+  margin:auto;
 
-  background:
-  rgba(255,255,255,0.05);
+  background:rgba(255,255,255,0.05);
 
-  padding:30px;
+  padding:20px;
 
-  border-radius:30px;
-
-  backdrop-filter:blur(15px);
-}
-
-.footer{
-
-  text-align:center;
-
-  padding:30px;
-
-  color:#888;
+  border-radius:20px;
 }
 
 </style>
@@ -329,206 +134,69 @@ header p{
 
 <header>
 
-  <h1>AERIS</h1>
+<h1>AERIS AI DASHBOARD</h1>
 
-  <p>
-
-    Advanced Environmental Visibility Monitoring System
-
-    <span class="live"></span>
-
-  </p>
+<p>Live Environmental Monitoring System</p>
 
 </header>
+
+<!-- POPUP -->
+
+<div id="popup" class="popup">System Starting...</div>
 
 <!-- LIVE DATA -->
 
 <div class="container">
 
-  <div class="card">
+<div class="card">
 
-    <h2>🌡 Temperature</h2>
+<h2>Temperature</h2>
 
-    <div class="value" id="temp">--</div>
-
-    <div class="status">
-      Atmospheric Temperature
-    </div>
-
-  </div>
-
-  <div class="card">
-
-    <h2>💧 Humidity</h2>
-
-    <div class="value" id="hum">--</div>
-
-    <div class="status">
-      Relative Humidity
-    </div>
-
-  </div>
-
-  <div class="card">
-
-    <h2>🌫 PM2.5</h2>
-
-    <div class="value" id="pm">--</div>
-
-    <div class="status">
-      Air Particle Concentration
-    </div>
-
-  </div>
-
-  <div class="card">
-
-    <h2>📡 VRI</h2>
-
-    <div class="value" id="vri">--</div>
-
-    <div class="status" id="vriStatus">
-      Loading...
-    </div>
-
-  </div>
+<h1 id="temp">--</h1>
 
 </div>
 
-<!-- INFORMATION -->
+<div class="card">
 
-<div class="info-section">
+<h2>Humidity</h2>
 
-  <h1 class="section-title">
-    Environmental Visibility Factors
-  </h1>
+<h1 id="hum">--</h1>
 
-  <div class="info-grid">
+</div>
 
-    <!-- PM2.5 -->
+<div class="card">
 
-    <div class="info-card">
+<h2>PM2.5</h2>
 
-      <img src="https://images.unsplash.com/photo-1528825871115-3581a5387919?q=80&w=1200&auto=format&fit=crop"
-      class="info-img">
+<h1 id="pm">--</h1>
 
-      <h2>🌫 PM2.5 Pollution</h2>
+</div>
 
-      <p>
+<div class="card">
 
-        PM2.5 consists of microscopic particles
-        suspended in the atmosphere.
+<h2>VRI</h2>
 
-        These particles originate from vehicles,
-        industrial smoke, combustion and pollution.
+<h1 id="vri">--</h1>
 
-      </p>
+<p id="status">Loading...</p>
 
-      <p>
+</div>
 
-        High PM2.5 levels scatter light and create haze,
-        reducing environmental visibility and increasing
-        respiratory health risks.
+<div class="card">
 
-      </p>
+<h2>Prediction</h2>
 
-    </div>
+<h1 id="pred">--</h1>
 
-    <!-- HUMIDITY -->
-
-    <div class="info-card">
-
-      <img src="https://images.unsplash.com/photo-1504608524841-42fe6f032b4b?q=80&w=1200&auto=format&fit=crop"
-      class="info-img">
-
-      <h2>💧 Humidity</h2>
-
-      <p>
-
-        Humidity measures the amount of water vapor
-        present in air.
-
-      </p>
-
-      <p>
-
-        High humidity creates fog formation and increases
-        atmospheric scattering, lowering long-distance
-        visibility.
-
-      </p>
-
-    </div>
-
-    <!-- RAIN -->
-
-    <div class="info-card">
-
-      <img src="https://images.unsplash.com/photo-1515694346937-94d85e41e6f0?q=80&w=1200&auto=format&fit=crop"
-      class="info-img">
-
-      <h2>🌧 Rain Detection</h2>
-
-      <p>
-
-        Rain droplets obstruct the path of light,
-        affecting visual clarity.
-
-      </p>
-
-      <p>
-
-        Heavy rainfall dramatically decreases visibility
-        and increases transportation hazards.
-
-      </p>
-
-    </div>
-
-    <!-- LIGHT -->
-
-    <div class="info-card">
-
-      <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?q=80&w=1200&auto=format&fit=crop"
-      class="info-img">
-
-      <h2>🌙 Ambient Light</h2>
-
-      <p>
-
-        Environmental brightness is measured using
-        the LDR sensor.
-
-      </p>
-
-      <p>
-
-        Low light conditions reduce visibility,
-        especially when combined with rain or pollution.
-
-      </p>
-
-    </div>
-
-  </div>
+</div>
 
 </div>
 
 <!-- CHART -->
 
-<div class="chart-container">
+<div class="chart-box">
 
-  <h1 class="section-title">
-    Live Environmental Analytics
-  </h1>
-
-  <canvas id="myChart"></canvas>
-
-</div>
-
-<div class="footer">
-
-  AERIS IoT Environmental Monitoring Dashboard
+<canvas id="chart"></canvas>
 
 </div>
 
@@ -536,37 +204,26 @@ header p{
 
 <script type="module">
 
-import { initializeApp }
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 
-from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-
-import {
-
-  getDatabase,
-  ref,
-  onValue
-
-}
-
-from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
-
-// FIREBASE CONFIG
+import { getDatabase, ref, onValue } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
 
 const firebaseConfig = {
 
-  apiKey: "AIzaSyCFcOMkIMOSLhVuw_iFpBdrH5w2ABDMsXc",
+apiKey:"YOUR_API_KEY",
 
-  authDomain: "aeris-dashboard.firebaseapp.com",
+authDomain:"YOUR_AUTH_DOMAIN",
 
-  databaseURL: "https://aeris-dashboard-default-rtdb.asia-southeast1.firebasedatabase.app/",
+databaseURL:"YOUR_DATABASE_URL",
 
-  projectId: "aeris-dashboard",
+projectId:"YOUR_PROJECT_ID",
 
-  storageBucket: "aeris-dashboard.firebasestorage.app",
+storageBucket:"YOUR_BUCKET",
 
-  messagingSenderId: "782547152481",
+messagingSenderId:"YOUR_ID",
 
-  appId: "1:782547152481:web:5dd3b9ccc6cde3dc04c420"
+appId:"YOUR_APPID"
+
 };
 
 const app = initializeApp(firebaseConfig);
@@ -575,145 +232,124 @@ const db = getDatabase(app);
 
 // CHART
 
-const ctx = document.getElementById('myChart');
+const ctx = document.getElementById("chart");
 
-const chart = new Chart(ctx, {
+const chart = new Chart(ctx,{
 
-  type: 'line',
+type:"line",
 
-  data: {
+data:{
 
-    labels: [],
+labels:[],
 
-    datasets: [
+datasets:[
 
-      {
+{
 
-        label: 'VRI',
+label:"VRI",
 
-        data: [],
+data:[],
 
-        borderColor: '#00ffff',
+borderColor:"#00ffff"
 
-        backgroundColor: 'rgba(0,255,255,0.1)',
+}
 
-        tension: 0.4
-      }
+]
 
-    ]
-  },
+}
 
-  options: {
-
-    responsive:true,
-
-    plugins: {
-
-      legend: {
-
-        labels: {
-
-          color:'white'
-        }
-      }
-    },
-
-    scales: {
-
-      x: {
-
-        ticks: {
-
-          color:'white'
-        }
-      },
-
-      y: {
-
-        ticks: {
-
-          color:'white'
-        }
-      }
-    }
-  }
 });
 
-// LIVE DATA
+// FIREBASE
 
-onValue(ref(db,"AERIS/Temperature"),(snapshot)=>{
+function bind(path,id){
 
-  document.getElementById("temp").innerHTML =
-  snapshot.val() + " °C";
+onValue(ref(db,path),(snap)=>{
+
+document.getElementById(id).innerText = snap.val();
+
 });
 
-onValue(ref(db,"AERIS/Humidity"),(snapshot)=>{
+}
 
-  document.getElementById("hum").innerHTML =
-  snapshot.val() + " %";
+bind("/AERIS/Temperature","temp");
+
+bind("/AERIS/Humidity","hum");
+
+bind("/AERIS/PM25","pm");
+
+bind("/AERIS/VRI","vri");
+
+bind("/AERIS/PRED","pred");
+
+// STATUS
+
+onValue(ref(db,"/AERIS/VRI"),(snap)=>{
+
+let v = snap.val();
+
+let status = document.getElementById("status");
+
+if(v>=75){
+
+status.innerHTML="SAFE";
+
+status.className="safe";
+
+}
+
+else if(v>=50){
+
+status.innerHTML="MODERATE";
+
+status.className="mid";
+
+}
+
+else{
+
+status.innerHTML="DANGER";
+
+status.className="danger";
+
+}
+
 });
 
-onValue(ref(db,"AERIS/PM25"),(snapshot)=>{
+// CHART UPDATE
 
-  document.getElementById("pm").innerHTML =
-  snapshot.val();
+onValue(ref(db,"/AERIS/VRI"),(snap)=>{
+
+let v = snap.val();
+
+let t = new Date().toLocaleTimeString();
+
+chart.data.labels.push(t);
+
+chart.data.datasets[0].data.push(v);
+
+if(chart.data.labels.length>10){
+
+chart.data.labels.shift();
+
+chart.data.datasets[0].data.shift();
+
+}
+
+chart.update();
+
 });
 
-onValue(ref(db,"AERIS/VRI"),(snapshot)=>{
+// POPUP
 
-  let value = snapshot.val();
+setTimeout(()=>{
 
-  document.getElementById("vri").innerHTML =
-  Math.round(value);
+document.getElementById("popup").innerText="Firebase Connected";
 
-  let status =
-  document.getElementById("vriStatus");
-
-  if(value >= 75){
-
-    status.innerHTML = "SAFE VISIBILITY";
-
-    status.className = "status safe";
-  }
-
-  else if(value >= 50){
-
-    status.innerHTML =
-    "MODERATE VISIBILITY";
-
-    status.className =
-    "status moderate";
-  }
-
-  else{
-
-    status.innerHTML =
-    "DANGER VISIBILITY";
-
-    status.className =
-    "status danger";
-  }
-
-  // UPDATE CHART
-
-  const time =
-  new Date().toLocaleTimeString();
-
-  chart.data.labels.push(time);
-
-  chart.data.datasets[0].data.push(value);
-
-  if(chart.data.labels.length > 10){
-
-    chart.data.labels.shift();
-
-    chart.data.datasets[0].data.shift();
-  }
-
-  chart.update();
-});
+},2000);
 
 </script>
 
 </body>
+
 </html>
