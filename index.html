@@ -1,74 +1,137 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
 <head>
 
-<meta charset="UTF-8">
+  <title>AERIS Dashboard</title>
 
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
 
-<title>AERIS Dashboard</title>
+    body {
 
-<link rel="stylesheet" href="style.css">
+      font-family: Arial;
+      background: #111;
+      color: white;
+      text-align: center;
+      padding-top: 50px;
+    }
+
+    .card {
+
+      background: #222;
+      margin: 20px auto;
+      padding: 20px;
+      width: 300px;
+      border-radius: 15px;
+    }
+
+    h1 {
+
+      color: cyan;
+    }
+
+  </style>
 
 </head>
 
 <body>
 
-<h1>AERIS Environmental Station</h1>
+  <h1>AERIS LIVE DASHBOARD</h1>
 
-<div class="container">
+  <div class="card">
 
-<div class="card" onclick="showInfo('temp')">
+    <h2>Temperature</h2>
 
-<h2>🌡 Temperature</h2>
+    <h3 id="temp">--</h3>
 
-<p id="temp">Loading...</p>
+  </div>
 
-</div>
+  <div class="card">
 
-<div class="card" onclick="showInfo('humidity')">
+    <h2>Humidity</h2>
 
-<h2>💧 Humidity</h2>
+    <h3 id="hum">--</h3>
 
-<p id="humidity">Loading...</p>
+  </div>
 
-</div>
+  <div class="card">
 
-<div class="card" onclick="showInfo('pm')">
+    <h2>PM2.5</h2>
 
-<h2>🌫 PM2.5</h2>
+    <h3 id="pm">--</h3>
 
-<p id="pm25">Loading...</p>
+  </div>
 
-</div>
+  <div class="card">
 
-<div class="card" onclick="showInfo('vri')">
+    <h2>VRI</h2>
 
-<h2>👁 VRI</h2>
+    <h3 id="vri">--</h3>
 
-<p id="vri">Loading...</p>
+  </div>
 
-</div>
+  <script type="module">
 
-</div>
+    import { initializeApp }
 
-<hr>
+    from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 
-<div id="details">
+    import {
 
-<h2>Sensor Information</h2>
+      getDatabase,
+      ref,
+      onValue
 
-<p>Click any card above.</p>
+    }
 
-</div>
+    from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
 
-<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+    const firebaseConfig = {
 
-<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-database-compat.js"></script>
+      apiKey: "AIzaSyCFcOMkIMOSLhVuw_iFpBdrH5w2ABDMsXc",
 
-<script src="script.js"></script>
+      authDomain: "aeris-dashboard.firebaseapp.com",
+
+      databaseURL: "https://aeris-dashboard-default-rtdb.asia-southeast1.firebasedatabase.app/",
+
+      projectId: "aeris-dashboard",
+
+      storageBucket: "aeris-dashboard.firebasestorage.app",
+
+      messagingSenderId: "782547152481",
+
+      appId: "1:782547152481:web:5dd3b9ccc6cde3dc04c420"
+    };
+
+    const app = initializeApp(firebaseConfig);
+
+    const db = getDatabase(app);
+
+    onValue(ref(db, "AERIS/Temperature"), (snapshot) => {
+
+      document.getElementById("temp").innerHTML =
+      snapshot.val() + " °C";
+    });
+
+    onValue(ref(db, "AERIS/Humidity"), (snapshot) => {
+
+      document.getElementById("hum").innerHTML =
+      snapshot.val() + " %";
+    });
+
+    onValue(ref(db, "AERIS/PM25"), (snapshot) => {
+
+      document.getElementById("pm").innerHTML =
+      snapshot.val();
+    });
+
+    onValue(ref(db, "AERIS/VRI"), (snapshot) => {
+
+      document.getElementById("vri").innerHTML =
+      snapshot.val();
+    });
+
+  </script>
 
 </body>
-
 </html>
