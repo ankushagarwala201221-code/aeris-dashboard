@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
 <head>
 
@@ -7,9 +7,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>AERIS NEXT GEN DASHBOARD</title>
+<title>AERIS - Kolkata Smart Monitoring</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
@@ -17,13 +17,15 @@
 
 body{
 
-  margin:0;
+margin:0;
 
-  font-family:Poppins;
+font-family:Poppins;
 
-  background:linear-gradient(135deg,#050816,#0a1026,#111b3a);
+background:linear-gradient(135deg,#050816,#0a1026,#111b3a);
 
-  color:white;
+color:white;
+
+overflow-x:hidden;
 
 }
 
@@ -31,17 +33,25 @@ body{
 
 header{
 
-  text-align:center;
+text-align:center;
 
-  padding:30px;
+padding:25px;
 
 }
 
 h1{
 
-  color:#00ffff;
+font-size:3rem;
 
-  font-size:3rem;
+color:#00ffff;
+
+text-shadow:0 0 25px rgba(0,255,255,0.4);
+
+}
+
+.location{
+
+color:#aaa;
 
 }
 
@@ -49,32 +59,53 @@ h1{
 
 .container{
 
-  display:grid;
+display:grid;
 
-  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
 
-  gap:20px;
+gap:15px;
 
-  padding:20px;
+padding:15px;
+
 }
 
 /* CARD */
 
 .card{
 
-  background:rgba(255,255,255,0.05);
+background:rgba(255,255,255,0.05);
 
-  padding:20px;
+border:1px solid rgba(255,255,255,0.08);
 
-  border-radius:20px;
+padding:20px;
 
-  backdrop-filter:blur(10px);
+border-radius:18px;
 
-  border:1px solid rgba(255,255,255,0.1);
+backdrop-filter:blur(12px);
+
+transition:0.3s;
+
+position:relative;
 
 }
 
-/* STATUS */
+.card:hover{
+
+transform:translateY(-5px);
+
+box-shadow:0 0 25px rgba(0,255,255,0.2);
+
+}
+
+.value{
+
+font-size:2.2rem;
+
+font-weight:600;
+
+}
+
+/* STATUS COLORS */
 
 .safe{color:#00ff99;}
 
@@ -82,48 +113,91 @@ h1{
 
 .danger{color:#ff4444;}
 
+/* LIVE DOT */
+
+.dot{
+
+width:10px;
+
+height:10px;
+
+background:#00ff99;
+
+display:inline-block;
+
+border-radius:50%;
+
+animation:pulse 1s infinite;
+
+margin-left:8px;
+
+}
+
+@keyframes pulse{
+
+0%{transform:scale(1);}
+50%{transform:scale(1.6);opacity:0.5;}
+100%{transform:scale(1);}
+
+}
+
 /* POPUP */
 
 .popup{
 
-  position:fixed;
+position:fixed;
 
-  top:20px;
+top:15px;
 
-  right:20px;
+right:15px;
 
-  background:rgba(0,255,255,0.1);
+background:rgba(0,255,255,0.12);
 
-  padding:15px;
+padding:12px;
 
-  border:1px solid cyan;
+border-radius:10px;
 
-  border-radius:10px;
+border:1px solid cyan;
 
-  animation:fade 5s forwards;
+animation:fade 5s forwards;
+
 }
 
 @keyframes fade{
 
-  0%{opacity:0}
-  10%{opacity:1}
-  80%{opacity:1}
-  100%{opacity:0}
+0%{opacity:0;}
+10%{opacity:1;}
+80%{opacity:1;}
+100%{opacity:0;}
+
 }
 
 /* CHART */
 
-.chart-box{
+.chart{
 
-  width:90%;
+width:90%;
 
-  margin:auto;
+margin:auto;
 
-  background:rgba(255,255,255,0.05);
+background:rgba(255,255,255,0.05);
 
-  padding:20px;
+padding:15px;
 
-  border-radius:20px;
+border-radius:15px;
+
+}
+
+/* IMAGE */
+
+img{
+
+width:100%;
+
+border-radius:12px;
+
+margin-top:10px;
+
 }
 
 </style>
@@ -132,61 +206,77 @@ h1{
 
 <body>
 
+<!-- HEADER -->
+
 <header>
 
-<h1>AERIS AI DASHBOARD</h1>
+<h1>AERIS <span class="dot"></span></h1>
 
-<p>Live Environmental Monitoring System</p>
+<div class="location">📍 Kolkata, India</div>
 
 </header>
 
 <!-- POPUP -->
 
-<div id="popup" class="popup">System Starting...</div>
+<div id="popup" class="popup">System Initializing...</div>
 
-<!-- LIVE DATA -->
+<!-- SENSOR CARDS -->
 
 <div class="container">
 
 <div class="card">
 
-<h2>Temperature</h2>
+<h3>Temperature</h3>
 
-<h1 id="temp">--</h1>
-
-</div>
-
-<div class="card">
-
-<h2>Humidity</h2>
-
-<h1 id="hum">--</h1>
+<div id="temp" class="value">--</div>
 
 </div>
 
 <div class="card">
 
-<h2>PM2.5</h2>
+<h3>Humidity</h3>
 
-<h1 id="pm">--</h1>
-
-</div>
-
-<div class="card">
-
-<h2>VRI</h2>
-
-<h1 id="vri">--</h1>
-
-<p id="status">Loading...</p>
+<div id="hum" class="value">--</div>
 
 </div>
 
 <div class="card">
 
-<h2>Prediction</h2>
+<h3>PM2.5</h3>
 
-<h1 id="pred">--</h1>
+<div id="pm" class="value">--</div>
+
+</div>
+
+<div class="card">
+
+<h3>VRI</h3>
+
+<div id="vri" class="value">--</div>
+
+<div id="status"></div>
+
+</div>
+
+<div class="card">
+
+<h3>Prediction</h3>
+
+<div id="pred" class="value">--</div>
+
+</div>
+
+</div>
+
+<!-- IMAGE SECTION -->
+
+<div class="container">
+
+<div class="card">
+
+<h3>Visibility View</h3>
+
+<img src="https://images.unsplash.com/photo-1501973801540-537f08ccae7b">
 
 </div>
 
@@ -194,7 +284,7 @@ h1{
 
 <!-- CHART -->
 
-<div class="chart-box">
+<div class="chart">
 
 <canvas id="chart"></canvas>
 
@@ -208,21 +298,23 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/fireba
 
 import { getDatabase, ref, onValue } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
 
+/* FIREBASE CONFIG */
+
 const firebaseConfig = {
 
-apiKey:"YOUR_API_KEY",
+apiKey: "YOUR_API_KEY",
 
-authDomain:"YOUR_AUTH_DOMAIN",
+authDomain: "YOUR_AUTH_DOMAIN",
 
-databaseURL:"YOUR_DATABASE_URL",
+databaseURL: "YOUR_DATABASE_URL",
 
-projectId:"YOUR_PROJECT_ID",
+projectId: "YOUR_PROJECT_ID",
 
-storageBucket:"YOUR_BUCKET",
+storageBucket: "YOUR_STORAGE_BUCKET",
 
-messagingSenderId:"YOUR_ID",
+messagingSenderId: "YOUR_SENDER_ID",
 
-appId:"YOUR_APPID"
+appId: "YOUR_APP_ID"
 
 };
 
@@ -230,43 +322,29 @@ const app = initializeApp(firebaseConfig);
 
 const db = getDatabase(app);
 
-// CHART
+/* POPUP */
 
-const ctx = document.getElementById("chart");
+function popup(msg){
 
-const chart = new Chart(ctx,{
+let d=document.createElement("div");
 
-type:"line",
+d.className="popup";
 
-data:{
+d.innerHTML=msg;
 
-labels:[],
+document.body.appendChild(d);
 
-datasets:[
-
-{
-
-label:"VRI",
-
-data:[],
-
-borderColor:"#00ffff"
+setTimeout(()=>d.remove(),4000);
 
 }
 
-]
-
-}
-
-});
-
-// FIREBASE
+/* BIND DATA */
 
 function bind(path,id){
 
 onValue(ref(db,path),(snap)=>{
 
-document.getElementById(id).innerText = snap.val();
+document.getElementById(id).innerText=snap.val();
 
 });
 
@@ -282,49 +360,79 @@ bind("/AERIS/VRI","vri");
 
 bind("/AERIS/PRED","pred");
 
-// STATUS
+/* STATUS */
 
 onValue(ref(db,"/AERIS/VRI"),(snap)=>{
 
-let v = snap.val();
+let v=snap.val();
 
-let status = document.getElementById("status");
+let s=document.getElementById("status");
 
 if(v>=75){
 
-status.innerHTML="SAFE";
+s.innerHTML="SAFE VISIBILITY";
 
-status.className="safe";
+s.className="safe";
+
+popup("🌿 Excellent air quality in Kolkata");
 
 }
 
 else if(v>=50){
 
-status.innerHTML="MODERATE";
+s.innerHTML="MODERATE VISIBILITY";
 
-status.className="mid";
+s.className="mid";
+
+popup("🌫 Moderate haze detected");
 
 }
 
 else{
 
-status.innerHTML="DANGER";
+s.innerHTML="DANGER VISIBILITY";
 
-status.className="danger";
+s.className="danger";
+
+popup("🚨 Danger! Low visibility in Kolkata");
 
 }
 
 });
 
-// CHART UPDATE
+/* CHART */
+
+const ctx=document.getElementById("chart");
+
+const chart=new Chart(ctx,{
+
+type:"line",
+
+data:{
+
+labels:[],
+
+datasets:[{
+
+label:"VRI",
+
+data:[],
+
+borderColor:"#00ffff",
+
+tension:0.3
+
+}]
+
+}
+
+});
 
 onValue(ref(db,"/AERIS/VRI"),(snap)=>{
 
-let v = snap.val();
+let v=snap.val();
 
-let t = new Date().toLocaleTimeString();
-
-chart.data.labels.push(t);
+chart.data.labels.push(new Date().toLocaleTimeString());
 
 chart.data.datasets[0].data.push(v);
 
@@ -339,14 +447,6 @@ chart.data.datasets[0].data.shift();
 chart.update();
 
 });
-
-// POPUP
-
-setTimeout(()=>{
-
-document.getElementById("popup").innerText="Firebase Connected";
-
-},2000);
 
 </script>
 
