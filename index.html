@@ -35,7 +35,7 @@ overflow-x:hidden;
 
 }
 
-/* BACKGROUND GLOW */
+/* BACKGROUND */
 
 body::before{
 
@@ -113,7 +113,7 @@ font-size:1rem;
 
 }
 
-/* LIVE DOT */
+/* LIVE */
 
 .live{
 
@@ -213,6 +213,8 @@ position:relative;
 
 overflow:hidden;
 
+animation:fadeUp 1s ease;
+
 }
 
 .card:hover{
@@ -266,7 +268,7 @@ color:#ff4444;
 
 }
 
-/* GRAPH BUTTONS */
+/* BUTTONS */
 
 .graph-buttons{
 
@@ -312,7 +314,7 @@ color:black;
 
 }
 
-/* INFO SECTION */
+/* TITLES */
 
 .section-title{
 
@@ -326,6 +328,8 @@ font-size:2.5rem;
 color:cyan;
 
 }
+
+/* INFO */
 
 .info-section{
 
@@ -360,6 +364,8 @@ backdrop-filter:blur(15px);
 border:1px solid rgba(255,255,255,0.08);
 
 transition:0.3s;
+
+animation:fadeUp 1.2s ease;
 
 }
 
@@ -417,6 +423,93 @@ border-radius:30px;
 
 backdrop-filter:blur(15px);
 
+animation:fadeUp 1.3s ease;
+
+}
+
+/* GAUGE */
+
+.gauge-wrap{
+
+width:320px;
+
+margin:auto;
+
+padding:20px;
+
+animation:float 4s ease-in-out infinite;
+
+}
+
+@keyframes float{
+
+0%{
+transform:translateY(0px);
+}
+
+50%{
+transform:translateY(-10px);
+}
+
+100%{
+transform:translateY(0px);
+}
+
+}
+
+/* FAQ */
+
+.faq-container{
+
+width:90%;
+
+margin:auto;
+
+display:grid;
+
+gap:20px;
+
+}
+
+.faq{
+
+background:rgba(255,255,255,0.05);
+
+padding:25px;
+
+border-radius:20px;
+
+backdrop-filter:blur(12px);
+
+border:1px solid rgba(255,255,255,0.08);
+
+transition:0.3s;
+
+}
+
+.faq:hover{
+
+transform:translateY(-6px);
+
+box-shadow:
+0 0 20px rgba(0,255,255,0.2);
+
+}
+
+.faq h3{
+
+color:#00ffff;
+
+margin-bottom:10px;
+
+}
+
+.faq p{
+
+line-height:1.8;
+
+color:#ccc;
+
 }
 
 /* POPUP */
@@ -463,13 +556,31 @@ margin-top:50px;
 
 }
 
+@keyframes fadeUp{
+
+0%{
+
+opacity:0;
+
+transform:translateY(30px);
+
+}
+
+100%{
+
+opacity:1;
+
+transform:translateY(0px);
+
+}
+
+}
+
 </style>
 
 </head>
 
 <body>
-
-<!-- HEADER -->
 
 <header>
 
@@ -485,15 +596,11 @@ Advanced Environmental Visibility Monitoring System
 
 </header>
 
-<!-- LOCATION -->
-
 <div class="location-box">
 
 📍 Live Monitoring Location: Kolkata, India
 
 </div>
-
-<!-- LIVE DATA -->
 
 <div class="container">
 
@@ -555,8 +662,6 @@ Loading...
 
 </div>
 
-<!-- GRAPH BUTTONS -->
-
 <div class="graph-buttons">
 
 <button onclick="switchGraph('vri')">VRI</button>
@@ -569,8 +674,6 @@ Loading...
 
 </div>
 
-<!-- INFORMATION -->
-
 <div class="info-section">
 
 <h1 class="section-title">
@@ -580,8 +683,6 @@ Environmental Visibility Factors
 </h1>
 
 <div class="info-grid">
-
-<!-- PM2.5 -->
 
 <div class="info-card">
 
@@ -594,22 +695,15 @@ class="info-img">
 
 PM2.5 particles are microscopic pollutants suspended in air.
 
-These particles are produced from traffic emissions,
-industrial smoke, fossil fuel combustion and urban pollution.
-
 </p>
 
 <p>
 
 High PM2.5 concentration reduces atmospheric visibility by scattering light and forming haze layers.
 
-Long-term exposure may also affect respiratory health and environmental quality.
-
 </p>
 
 </div>
-
-<!-- HUMIDITY -->
 
 <div class="info-card">
 
@@ -626,15 +720,11 @@ Humidity represents the amount of water vapor present in the atmosphere.
 
 <p>
 
-As humidity increases, microscopic water droplets form in air, increasing atmospheric scattering and fog formation.
-
-This significantly lowers long-distance visibility during early mornings and rainy conditions.
+Humidity increases fog formation and atmospheric scattering.
 
 </p>
 
 </div>
-
-<!-- RAIN -->
 
 <div class="info-card">
 
@@ -651,15 +741,11 @@ Rainfall affects visibility by introducing suspended droplets into the atmospher
 
 <p>
 
-Heavy rain causes light diffusion and optical obstruction, reducing road visibility and increasing transportation hazards.
-
-Combined rain and pollution conditions create severe atmospheric haze.
+Heavy rain causes optical obstruction and road hazards.
 
 </p>
 
 </div>
-
-<!-- LIGHT -->
 
 <div class="info-card">
 
@@ -676,9 +762,7 @@ Ambient light intensity is measured using the LDR sensor.
 
 <p>
 
-Low light conditions reduce visual perception and increase environmental darkness.
-
-Night conditions combined with fog or pollution create dangerous visibility environments.
+Low light conditions reduce visibility and increase danger.
 
 </p>
 
@@ -687,8 +771,6 @@ Night conditions combined with fog or pollution create dangerous visibility envi
 </div>
 
 </div>
-
-<!-- CHART -->
 
 <div class="chart-container">
 
@@ -702,19 +784,127 @@ Live Environmental Analytics
 
 </div>
 
-<!-- POPUP -->
+<div class="chart-container">
+
+<h1 class="section-title">
+
+Live VRI Meter
+
+</h1>
+
+<div class="gauge-wrap">
+
+<canvas id="gaugeChart"></canvas>
+
+</div>
+
+</div>
+
+<div class="info-section">
+
+<h1 class="section-title">
+
+Future Visibility Prediction
+
+</h1>
+
+<div class="container">
+
+<div class="card">
+
+<h2>🔮 AI Visibility Forecast</h2>
+
+<div class="value" id="predictionText">
+
+Analyzing...
+
+</div>
+
+<div class="status">
+
+Predicted atmospheric visibility conditions
+based on environmental sensor analytics.
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="info-section">
+
+<h1 class="section-title">
+
+Frequently Asked Questions
+
+</h1>
+
+<div class="faq-container">
+
+<div class="faq">
+
+<h3>❓ What is VRI?</h3>
+
+<p>
+
+VRI estimates atmospheric visibility using pollution,
+humidity, rainfall and ambient light conditions.
+
+</p>
+
+</div>
+
+<div class="faq">
+
+<h3>❓ Why is PM2.5 dangerous?</h3>
+
+<p>
+
+PM2.5 particles reduce atmospheric clarity and
+affect respiratory health.
+
+</p>
+
+</div>
+
+<div class="faq">
+
+<h3>❓ How does humidity affect visibility?</h3>
+
+<p>
+
+Humidity creates microscopic droplets which
+increase fog formation.
+
+</p>
+
+</div>
+
+<div class="faq">
+
+<h3>❓ What happens during low VRI?</h3>
+
+<p>
+
+Low VRI indicates dangerous environmental visibility conditions.
+
+</p>
+
+</div>
+
+</div>
+
+</div>
 
 <div id="popup" class="popup"></div>
-
-<!-- FOOTER -->
 
 <div class="footer">
 
 AERIS IoT Environmental Monitoring Dashboard
 
 </div>
-
-<!-- FIREBASE -->
 
 <script type="module">
 
@@ -731,8 +921,6 @@ onValue
 }
 
 from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
-
-/* FIREBASE CONFIG */
 
 const firebaseConfig = {
 
@@ -756,8 +944,6 @@ const app = initializeApp(firebaseConfig);
 
 const db = getDatabase(app);
 
-/* POPUP */
-
 function showPopup(msg){
 
 const popup=document.getElementById("popup");
@@ -773,8 +959,6 @@ popup.style.opacity="0";
 },4000);
 
 }
-
-/* CHART */
 
 let currentGraph = "vri";
 
@@ -854,7 +1038,90 @@ color:'white'
 
 });
 
-/* SWITCH GRAPH */
+const gaugeCtx =
+document.getElementById('gaugeChart');
+
+const gaugeChart =
+new Chart(gaugeCtx, {
+
+type: 'doughnut',
+
+data: {
+
+labels: ['VRI','Remaining'],
+
+datasets: [{
+
+data: [50,50],
+
+backgroundColor: [
+
+'#00ffff',
+
+'rgba(255,255,255,0.08)'
+
+],
+
+borderWidth:0
+
+}]
+
+},
+
+options: {
+
+rotation:270,
+
+circumference:180,
+
+cutout:'75%',
+
+plugins:{
+
+legend:{
+display:false
+}
+
+}
+
+}
+
+});
+
+function updatePrediction(vri){
+
+let text =
+document.getElementById("predictionText");
+
+if(vri >= 80){
+
+text.innerHTML =
+"🌿 Excellent visibility expected across Kolkata.";
+
+}
+
+else if(vri >= 60){
+
+text.innerHTML =
+"🌤 Moderate atmospheric haze may develop.";
+
+}
+
+else if(vri >= 40){
+
+text.innerHTML =
+"🌫 Visibility deterioration likely.";
+
+}
+
+else{
+
+text.innerHTML =
+"🚨 Severe visibility reduction predicted.";
+
+}
+
+}
 
 window.switchGraph = function(type){
 
@@ -868,11 +1135,9 @@ chart.data.datasets[0].label = type.toUpperCase();
 
 chart.update();
 
-showPopup("📊 Switched to " + type.toUpperCase() + " analytics");
+showPopup("📊 Switched to " + type.toUpperCase());
 
 }
-
-/* UPDATE CHART */
 
 function updateChart(value){
 
@@ -894,8 +1159,6 @@ chart.update();
 
 }
 
-/* TEMPERATURE */
-
 onValue(ref(db,"AERIS/Temperature"),(snapshot)=>{
 
 let val = snapshot.val();
@@ -910,8 +1173,6 @@ updateChart(val);
 }
 
 });
-
-/* HUMIDITY */
 
 onValue(ref(db,"AERIS/Humidity"),(snapshot)=>{
 
@@ -928,8 +1189,6 @@ updateChart(val);
 
 });
 
-/* PM2.5 */
-
 onValue(ref(db,"AERIS/PM25"),(snapshot)=>{
 
 let val = snapshot.val();
@@ -944,8 +1203,6 @@ updateChart(val);
 }
 
 });
-
-/* VRI */
 
 onValue(ref(db,"AERIS/VRI"),(snapshot)=>{
 
@@ -975,7 +1232,7 @@ status.innerHTML =
 status.className =
 "status moderate";
 
-showPopup("🌫 Moderate haze detected across monitored region");
+showPopup("🌫 Moderate haze detected");
 
 }
 
@@ -987,9 +1244,16 @@ status.innerHTML =
 status.className =
 "status danger";
 
-showPopup("🚨 Visibility hazard warning issued");
+showPopup("🚨 Visibility hazard warning");
 
 }
+
+gaugeChart.data.datasets[0].data =
+[value,100-value];
+
+gaugeChart.update();
+
+updatePrediction(value);
 
 if(currentGraph=="vri"){
 
