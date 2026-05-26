@@ -18,6 +18,7 @@
 margin:0;
 padding:0;
 box-sizing:border-box;
+scroll-behavior:smooth;
 }
 
 body{
@@ -89,13 +90,15 @@ padding:40px;
 
 text-align:center;
 
+animation:fadeUp 1s ease;
+
 }
 
 header h1{
 
-font-size:3rem;
+font-size:4rem;
 
-letter-spacing:4px;
+letter-spacing:6px;
 
 color:#00ffff;
 
@@ -113,7 +116,7 @@ font-size:1rem;
 
 }
 
-/* LIVE */
+/* LIVE DOT */
 
 .live{
 
@@ -150,8 +153,6 @@ opacity:1;
 }
 
 }
-
-/* LOCATION */
 
 .location-box{
 
@@ -234,12 +235,6 @@ color:white;
 font-size:1rem;
 
 outline:none;
-
-}
-
-.auth-box input::placeholder{
-
-color:#bbb;
 
 }
 
@@ -489,8 +484,6 @@ border:1px solid rgba(255,255,255,0.08);
 
 transition:0.3s;
 
-animation:fadeUp 1.2s ease;
-
 }
 
 .info-card:hover{
@@ -547,8 +540,6 @@ border-radius:30px;
 
 backdrop-filter:blur(15px);
 
-animation:fadeUp 1.3s ease;
-
 }
 
 /* GAUGE */
@@ -560,24 +551,6 @@ width:320px;
 margin:auto;
 
 padding:20px;
-
-animation:float 4s ease-in-out infinite;
-
-}
-
-@keyframes float{
-
-0%{
-transform:translateY(0px);
-}
-
-50%{
-transform:translateY(-10px);
-}
-
-100%{
-transform:translateY(0px);
-}
 
 }
 
@@ -620,22 +593,6 @@ box-shadow:
 
 }
 
-.faq h3{
-
-color:#00ffff;
-
-margin-bottom:10px;
-
-}
-
-.faq p{
-
-line-height:1.8;
-
-color:#ccc;
-
-}
-
 /* POPUP */
 
 .popup{
@@ -666,8 +623,6 @@ color:white;
 
 }
 
-/* FOOTER */
-
 .footer{
 
 text-align:center;
@@ -683,19 +638,13 @@ margin-top:50px;
 @keyframes fadeUp{
 
 0%{
-
 opacity:0;
-
 transform:translateY(30px);
-
 }
 
 100%{
-
 opacity:1;
-
 transform:translateY(0px);
-
 }
 
 }
@@ -730,11 +679,7 @@ Advanced Environmental Visibility Monitoring System
 
 <h2>🔐 AERIS CLOUD ACCESS</h2>
 
-<p>
-
-Create Account Or Login To Continue
-
-</p>
+<p>Create Account Or Login To Continue</p>
 
 <input type="email" id="email" placeholder="Enter Email">
 
@@ -742,29 +687,13 @@ Create Account Or Login To Continue
 
 <div class="auth-buttons">
 
-<button id="signupBtn">
+<button id="signupBtn">Create Account</button>
 
-Create Account
+<button id="loginBtn">Login</button>
 
-</button>
+<button id="googleLogin">Google Login</button>
 
-<button id="loginBtn">
-
-Login
-
-</button>
-
-<button id="googleLogin">
-
-Google Login
-
-</button>
-
-<button id="logoutBtn">
-
-Logout
-
-</button>
+<button id="logoutBtn">Logout</button>
 
 </div>
 
@@ -784,11 +713,7 @@ Logout
 
 <div class="value" id="temp">--</div>
 
-<div class="status">
-
-Atmospheric Temperature
-
-</div>
+<div class="status">Atmospheric Temperature</div>
 
 </div>
 
@@ -798,11 +723,7 @@ Atmospheric Temperature
 
 <div class="value" id="hum">--</div>
 
-<div class="status">
-
-Relative Humidity
-
-</div>
+<div class="status">Relative Humidity</div>
 
 </div>
 
@@ -812,11 +733,7 @@ Relative Humidity
 
 <div class="value" id="pm">--</div>
 
-<div class="status">
-
-Air Particle Concentration
-
-</div>
+<div class="status">Air Particle Concentration</div>
 
 </div>
 
@@ -826,9 +743,139 @@ Air Particle Concentration
 
 <div class="value" id="vri">--</div>
 
-<div class="status" id="vriStatus">
+<div class="status" id="vriStatus">Loading...</div>
 
-Loading...
+</div>
+
+</div>
+
+<div class="graph-buttons">
+
+<button onclick="switchGraph('vri')">VRI</button>
+
+<button onclick="switchGraph('temp')">TEMP</button>
+
+<button onclick="switchGraph('hum')">HUMIDITY</button>
+
+<button onclick="switchGraph('pm')">PM2.5</button>
+
+</div>
+
+<div class="chart-container">
+
+<h1 class="section-title">
+
+Live Environmental Analytics
+
+</h1>
+
+<canvas id="myChart"></canvas>
+
+</div>
+
+<div class="chart-container">
+
+<h1 class="section-title">
+
+Live VRI Meter
+
+</h1>
+
+<div class="gauge-wrap">
+
+<canvas id="gaugeChart"></canvas>
+
+</div>
+
+</div>
+
+<div class="info-section">
+
+<h1 class="section-title">
+
+Future Visibility Prediction
+
+</h1>
+
+<div class="container">
+
+<div class="card">
+
+<h2>🔮 AI Visibility Forecast</h2>
+
+<div class="value" id="predictionText">
+
+Analyzing...
+
+</div>
+
+<div class="status">
+
+Predicted atmospheric visibility conditions
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="info-section">
+
+<h1 class="section-title">
+
+Frequently Asked Questions
+
+</h1>
+
+<div class="faq-container">
+
+<div class="faq">
+
+<h3>❓ What is VRI?</h3>
+
+<p>
+
+VRI estimates atmospheric visibility using pollution, humidity, rainfall and ambient light conditions.
+
+</p>
+
+</div>
+
+<div class="faq">
+
+<h3>❓ Why is PM2.5 dangerous?</h3>
+
+<p>
+
+PM2.5 particles reduce atmospheric clarity and affect respiratory health.
+
+</p>
+
+</div>
+
+<div class="faq">
+
+<h3>❓ How does humidity affect visibility?</h3>
+
+<p>
+
+Humidity creates microscopic droplets which increase fog formation.
+
+</p>
+
+</div>
+
+<div class="faq">
+
+<h3>❓ What happens during low VRI?</h3>
+
+<p>
+
+Low VRI indicates dangerous environmental visibility conditions.
+
+</p>
 
 </div>
 
@@ -837,6 +884,12 @@ Loading...
 </div>
 
 <div id="popup" class="popup"></div>
+
+<div class="footer">
+
+AERIS IoT Environmental Monitoring Dashboard
+
+</div>
 
 <script type="module">
 
@@ -860,7 +913,8 @@ getAuth,
 createUserWithEmailAndPassword,
 signInWithEmailAndPassword,
 GoogleAuthProvider,
-signInWithPopup,
+signInWithRedirect,
+getRedirectResult,
 signOut,
 onAuthStateChanged
 
@@ -880,7 +934,7 @@ projectId: "YOUR_PROJECT_ID",
 
 storageBucket: "YOUR_STORAGE_BUCKET",
 
-messagingSenderId: "YOUR_SENDER_ID",
+messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
 
 appId: "YOUR_APP_ID"
 
@@ -893,6 +947,8 @@ const db = getDatabase(app);
 const auth = getAuth(app);
 
 const provider = new GoogleAuthProvider();
+
+/* POPUP */
 
 function showPopup(msg){
 
@@ -910,21 +966,21 @@ popup.style.opacity="0";
 
 }
 
+/* AUTH */
+
 document.getElementById("signupBtn")
 
 .addEventListener("click",()=>{
 
-const email =
-document.getElementById("email").value;
+const email=document.getElementById("email").value;
 
-const password =
-document.getElementById("password").value;
+const password=document.getElementById("password").value;
 
 createUserWithEmailAndPassword(auth,email,password)
 
 .then(()=>{
 
-showPopup("🟢 Account Created Successfully");
+showPopup("🟢 Account Created");
 
 })
 
@@ -940,11 +996,9 @@ document.getElementById("loginBtn")
 
 .addEventListener("click",()=>{
 
-const email =
-document.getElementById("email").value;
+const email=document.getElementById("email").value;
 
-const password =
-document.getElementById("password").value;
+const password=document.getElementById("password").value;
 
 signInWithEmailAndPassword(auth,email,password)
 
@@ -966,19 +1020,25 @@ document.getElementById("googleLogin")
 
 .addEventListener("click",()=>{
 
-signInWithPopup(auth,provider)
+signInWithRedirect(auth,provider);
 
-.then(()=>{
+});
+
+getRedirectResult(auth)
+
+.then((result)=>{
+
+if(result){
 
 showPopup("☁ Google Login Successful");
+
+}
 
 })
 
 .catch((error)=>{
 
 showPopup("❌ " + error.message);
-
-});
 
 });
 
@@ -998,18 +1058,15 @@ showPopup("🚪 Logged Out");
 
 onAuthStateChanged(auth,(user)=>{
 
-const userInfo =
-document.getElementById("userInfo");
+const userInfo=document.getElementById("userInfo");
 
 if(user){
 
 userInfo.innerHTML =
 
-"🟢 Logged in as:<br>" +
+"🟢 Logged In As:<br><br>" +
 
 user.email;
-
-showPopup("☁ Connected To AERIS Cloud");
 
 }
 
@@ -1018,6 +1075,336 @@ else{
 userInfo.innerHTML =
 
 "🔴 Authentication Required";
+
+}
+
+});
+
+/* CHART */
+
+let currentGraph = "vri";
+
+const ctx = document.getElementById('myChart');
+
+const chart = new Chart(ctx, {
+
+type: 'line',
+
+data: {
+
+labels: [],
+
+datasets: [{
+
+label: 'VRI',
+
+data: [],
+
+borderColor: '#00ffff',
+
+backgroundColor: 'rgba(0,255,255,0.1)',
+
+tension: 0.4
+
+}]
+
+},
+
+options: {
+
+responsive:true,
+
+plugins:{
+
+legend:{
+
+labels:{
+
+color:'white'
+
+}
+
+}
+
+},
+
+scales:{
+
+x:{
+
+ticks:{
+
+color:'white'
+
+}
+
+},
+
+y:{
+
+ticks:{
+
+color:'white'
+
+}
+
+}
+
+}
+
+}
+
+});
+
+window.switchGraph = function(type){
+
+currentGraph = type;
+
+chart.data.labels=[];
+
+chart.data.datasets[0].data=[];
+
+chart.data.datasets[0].label=type.toUpperCase();
+
+chart.update();
+
+};
+
+/* GAUGE */
+
+const gaugeCtx =
+
+document.getElementById('gaugeChart');
+
+const gaugeChart = new Chart(gaugeCtx, {
+
+type:'doughnut',
+
+data:{
+
+labels:['VRI','Remaining'],
+
+datasets:[{
+
+data:[50,50],
+
+backgroundColor:[
+
+'#00ffff',
+
+'rgba(255,255,255,0.08)'
+
+],
+
+borderWidth:0
+
+}]
+
+},
+
+options:{
+
+rotation:270,
+
+circumference:180,
+
+cutout:'75%',
+
+plugins:{
+
+legend:{
+
+display:false
+
+}
+
+}
+
+}
+
+});
+
+/* UPDATE CHART */
+
+function updateChart(value){
+
+const time = new Date().toLocaleTimeString();
+
+chart.data.labels.push(time);
+
+chart.data.datasets[0].data.push(value);
+
+if(chart.data.labels.length > 10){
+
+chart.data.labels.shift();
+
+chart.data.datasets[0].data.shift();
+
+}
+
+chart.update();
+
+}
+
+/* PREDICTION */
+
+function updatePrediction(vri){
+
+let text =
+
+document.getElementById("predictionText");
+
+if(vri >= 80){
+
+text.innerHTML =
+
+"🌿 Excellent visibility expected.";
+
+}
+
+else if(vri >= 60){
+
+text.innerHTML =
+
+"🌤 Moderate haze may develop.";
+
+}
+
+else if(vri >= 40){
+
+text.innerHTML =
+
+"🌫 Visibility deterioration likely.";
+
+}
+
+else{
+
+text.innerHTML =
+
+"🚨 Severe visibility reduction predicted.";
+
+}
+
+}
+
+/* FIREBASE DATA */
+
+onValue(ref(db,"AERIS/Temperature"),
+
+(snapshot)=>{
+
+let val=snapshot.val();
+
+document.getElementById("temp").innerHTML=
+
+val + " °C";
+
+if(currentGraph=="temp"){
+
+updateChart(val);
+
+}
+
+});
+
+onValue(ref(db,"AERIS/Humidity"),
+
+(snapshot)=>{
+
+let val=snapshot.val();
+
+document.getElementById("hum").innerHTML=
+
+val + " %";
+
+if(currentGraph=="hum"){
+
+updateChart(val);
+
+}
+
+});
+
+onValue(ref(db,"AERIS/PM25"),
+
+(snapshot)=>{
+
+let val=snapshot.val();
+
+document.getElementById("pm").innerHTML=
+
+val;
+
+if(currentGraph=="pm"){
+
+updateChart(val);
+
+}
+
+});
+
+onValue(ref(db,"AERIS/VRI"),
+
+(snapshot)=>{
+
+let value=snapshot.val();
+
+document.getElementById("vri").innerHTML=
+
+Math.round(value);
+
+let status=
+
+document.getElementById("vriStatus");
+
+if(value >= 75){
+
+status.innerHTML=
+
+"SAFE VISIBILITY";
+
+status.className=
+
+"status safe";
+
+}
+
+else if(value >= 50){
+
+status.innerHTML=
+
+"MODERATE VISIBILITY";
+
+status.className=
+
+"status moderate";
+
+}
+
+else{
+
+status.innerHTML=
+
+"DANGER VISIBILITY";
+
+status.className=
+
+"status danger";
+
+}
+
+gaugeChart.data.datasets[0].data=
+
+[value,100-value];
+
+gaugeChart.update();
+
+updatePrediction(value);
+
+if(currentGraph=="vri"){
+
+updateChart(value);
 
 }
 
