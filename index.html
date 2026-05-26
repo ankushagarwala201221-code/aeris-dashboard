@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
 
@@ -7,197 +7,318 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>AERIS - Kolkata Smart Monitoring</title>
+<title>AERIS FUTURE DASHBOARD</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 <style>
 
-body{
-
-margin:0;
-
-font-family:Poppins;
-
-background:linear-gradient(135deg,#050816,#0a1026,#111b3a);
-
-color:white;
-
-overflow-x:hidden;
-
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
 }
 
-/* HEADER */
+body{
+
+  font-family:'Poppins',sans-serif;
+
+  background:
+  linear-gradient(135deg,#050816,#0a1026,#111b3a);
+
+  color:white;
+
+  min-height:100vh;
+
+  overflow-x:hidden;
+}
+
+/* Glow Background */
+
+body::before{
+
+  content:"";
+
+  position:fixed;
+
+  width:600px;
+  height:600px;
+
+  background:cyan;
+
+  filter:blur(220px);
+
+  opacity:0.10;
+
+  top:-200px;
+  left:-150px;
+
+  z-index:-1;
+}
+
+body::after{
+
+  content:"";
+
+  position:fixed;
+
+  width:500px;
+  height:500px;
+
+  background:#00ff88;
+
+  filter:blur(220px);
+
+  opacity:0.08;
+
+  bottom:-150px;
+  right:-120px;
+
+  z-index:-1;
+}
 
 header{
 
-text-align:center;
+  padding:40px;
 
-padding:25px;
-
+  text-align:center;
 }
 
-h1{
+header h1{
 
-font-size:3rem;
+  font-size:3rem;
 
-color:#00ffff;
+  letter-spacing:4px;
 
-text-shadow:0 0 25px rgba(0,255,255,0.4);
+  color:#00ffff;
 
+  text-shadow:0 0 20px cyan;
 }
 
-.location{
+header p{
 
-color:#aaa;
+  margin-top:10px;
 
+  color:#aaa;
+
+  font-size:1rem;
 }
 
-/* GRID */
+.live{
 
-.container{
+  display:inline-block;
 
-display:grid;
+  width:12px;
+  height:12px;
 
-grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  border-radius:50%;
 
-gap:15px;
+  background:#00ff88;
 
-padding:15px;
+  margin-left:10px;
 
-}
-
-/* CARD */
-
-.card{
-
-background:rgba(255,255,255,0.05);
-
-border:1px solid rgba(255,255,255,0.08);
-
-padding:20px;
-
-border-radius:18px;
-
-backdrop-filter:blur(12px);
-
-transition:0.3s;
-
-position:relative;
-
-}
-
-.card:hover{
-
-transform:translateY(-5px);
-
-box-shadow:0 0 25px rgba(0,255,255,0.2);
-
-}
-
-.value{
-
-font-size:2.2rem;
-
-font-weight:600;
-
-}
-
-/* STATUS COLORS */
-
-.safe{color:#00ff99;}
-
-.mid{color:#ffd000;}
-
-.danger{color:#ff4444;}
-
-/* LIVE DOT */
-
-.dot{
-
-width:10px;
-
-height:10px;
-
-background:#00ff99;
-
-display:inline-block;
-
-border-radius:50%;
-
-animation:pulse 1s infinite;
-
-margin-left:8px;
-
+  animation:pulse 1s infinite;
 }
 
 @keyframes pulse{
 
-0%{transform:scale(1);}
-50%{transform:scale(1.6);opacity:0.5;}
-100%{transform:scale(1);}
+  0%{
+    transform:scale(1);
+    opacity:1;
+  }
 
+  50%{
+    transform:scale(1.5);
+    opacity:0.5;
+  }
+
+  100%{
+    transform:scale(1);
+    opacity:1;
+  }
 }
 
-/* POPUP */
+.container{
 
-.popup{
+  width:90%;
 
-position:fixed;
+  margin:auto;
 
-top:15px;
+  display:grid;
 
-right:15px;
+  grid-template-columns:
+  repeat(auto-fit,minmax(250px,1fr));
 
-background:rgba(0,255,255,0.12);
-
-padding:12px;
-
-border-radius:10px;
-
-border:1px solid cyan;
-
-animation:fade 5s forwards;
-
+  gap:25px;
 }
 
-@keyframes fade{
+.card{
 
-0%{opacity:0;}
-10%{opacity:1;}
-80%{opacity:1;}
-100%{opacity:0;}
+  background:
+  rgba(255,255,255,0.05);
 
+  border-radius:25px;
+
+  padding:30px;
+
+  backdrop-filter:blur(15px);
+
+  border:1px solid rgba(255,255,255,0.08);
+
+  transition:0.3s;
+}
+
+.card:hover{
+
+  transform:translateY(-10px);
+
+  box-shadow:
+  0 0 25px rgba(0,255,255,0.25);
+}
+
+.card h2{
+
+  color:#00ffff;
+
+  margin-bottom:15px;
+}
+
+.value{
+
+  font-size:2.7rem;
+
+  font-weight:600;
+}
+
+.status{
+
+  margin-top:12px;
+
+  color:#bbb;
+}
+
+.safe{
+
+  color:#00ff99;
+}
+
+.moderate{
+
+  color:#ffd000;
+}
+
+.danger{
+
+  color:#ff4444;
+}
+
+/* INFO SECTION */
+
+.section-title{
+
+  text-align:center;
+
+  margin-top:80px;
+  margin-bottom:40px;
+
+  font-size:2.5rem;
+
+  color:cyan;
+}
+
+.info-section{
+
+  width:90%;
+
+  margin:auto;
+}
+
+.info-grid{
+
+  display:grid;
+
+  grid-template-columns:
+  repeat(auto-fit,minmax(300px,1fr));
+
+  gap:30px;
+}
+
+.info-card{
+
+  background:
+  rgba(255,255,255,0.05);
+
+  border-radius:25px;
+
+  overflow:hidden;
+
+  backdrop-filter:blur(15px);
+
+  border:1px solid rgba(255,255,255,0.08);
+
+  transition:0.3s;
+}
+
+.info-card:hover{
+
+  transform:translateY(-10px);
+
+  box-shadow:
+  0 0 25px rgba(0,255,255,0.25);
+}
+
+.info-img{
+
+  width:100%;
+
+  height:220px;
+
+  object-fit:cover;
+}
+
+.info-card h2{
+
+  padding:20px;
+
+  color:#00ffff;
+}
+
+.info-card p{
+
+  padding:0 20px 20px 20px;
+
+  line-height:1.8;
+
+  color:#ccc;
 }
 
 /* CHART */
 
-.chart{
+.chart-container{
 
-width:90%;
+  width:90%;
 
-margin:auto;
+  margin:80px auto;
 
-background:rgba(255,255,255,0.05);
+  background:
+  rgba(255,255,255,0.05);
 
-padding:15px;
+  padding:30px;
 
-border-radius:15px;
+  border-radius:30px;
 
+  backdrop-filter:blur(15px);
 }
 
-/* IMAGE */
+.footer{
 
-img{
+  text-align:center;
 
-width:100%;
+  padding:30px;
 
-border-radius:12px;
-
-margin-top:10px;
-
+  color:#888;
 }
 
 </style>
@@ -206,87 +327,208 @@ margin-top:10px;
 
 <body>
 
-<!-- HEADER -->
-
 <header>
 
-<h1>AERIS <span class="dot"></span></h1>
+  <h1>AERIS</h1>
 
-<div class="location">📍 Kolkata, India</div>
+  <p>
+
+    Advanced Environmental Visibility Monitoring System
+
+    <span class="live"></span>
+
+  </p>
 
 </header>
 
-<!-- POPUP -->
-
-<div id="popup" class="popup">System Initializing...</div>
-
-<!-- SENSOR CARDS -->
+<!-- LIVE DATA -->
 
 <div class="container">
 
-<div class="card">
+  <div class="card">
 
-<h3>Temperature</h3>
+    <h2>🌡 Temperature</h2>
 
-<div id="temp" class="value">--</div>
+    <div class="value" id="temp">--</div>
 
-</div>
+    <div class="status">
+      Atmospheric Temperature
+    </div>
 
-<div class="card">
+  </div>
 
-<h3>Humidity</h3>
+  <div class="card">
 
-<div id="hum" class="value">--</div>
+    <h2>💧 Humidity</h2>
 
-</div>
+    <div class="value" id="hum">--</div>
 
-<div class="card">
+    <div class="status">
+      Relative Humidity
+    </div>
 
-<h3>PM2.5</h3>
+  </div>
 
-<div id="pm" class="value">--</div>
+  <div class="card">
 
-</div>
+    <h2>🌫 PM2.5</h2>
 
-<div class="card">
+    <div class="value" id="pm">--</div>
 
-<h3>VRI</h3>
+    <div class="status">
+      Air Particle Concentration
+    </div>
 
-<div id="vri" class="value">--</div>
+  </div>
 
-<div id="status"></div>
+  <div class="card">
 
-</div>
+    <h2>📡 VRI</h2>
 
-<div class="card">
+    <div class="value" id="vri">--</div>
 
-<h3>Prediction</h3>
+    <div class="status" id="vriStatus">
+      Loading...
+    </div>
 
-<div id="pred" class="value">--</div>
-
-</div>
-
-</div>
-
-<!-- IMAGE SECTION -->
-
-<div class="container">
-
-<div class="card">
-
-<h3>Visibility View</h3>
-
-<img src="https://images.unsplash.com/photo-1501973801540-537f08ccae7b">
+  </div>
 
 </div>
+
+<!-- INFORMATION -->
+
+<div class="info-section">
+
+  <h1 class="section-title">
+    Environmental Visibility Factors
+  </h1>
+
+  <div class="info-grid">
+
+    <!-- PM2.5 -->
+
+    <div class="info-card">
+
+      <img src="https://images.unsplash.com/photo-1528825871115-3581a5387919?q=80&w=1200&auto=format&fit=crop"
+      class="info-img">
+
+      <h2>🌫 PM2.5 Pollution</h2>
+
+      <p>
+
+        PM2.5 consists of microscopic particles
+        suspended in the atmosphere.
+
+        These particles originate from vehicles,
+        industrial smoke, combustion and pollution.
+
+      </p>
+
+      <p>
+
+        High PM2.5 levels scatter light and create haze,
+        reducing environmental visibility and increasing
+        respiratory health risks.
+
+      </p>
+
+    </div>
+
+    <!-- HUMIDITY -->
+
+    <div class="info-card">
+
+      <img src="https://images.unsplash.com/photo-1504608524841-42fe6f032b4b?q=80&w=1200&auto=format&fit=crop"
+      class="info-img">
+
+      <h2>💧 Humidity</h2>
+
+      <p>
+
+        Humidity measures the amount of water vapor
+        present in air.
+
+      </p>
+
+      <p>
+
+        High humidity creates fog formation and increases
+        atmospheric scattering, lowering long-distance
+        visibility.
+
+      </p>
+
+    </div>
+
+    <!-- RAIN -->
+
+    <div class="info-card">
+
+      <img src="https://images.unsplash.com/photo-1515694346937-94d85e41e6f0?q=80&w=1200&auto=format&fit=crop"
+      class="info-img">
+
+      <h2>🌧 Rain Detection</h2>
+
+      <p>
+
+        Rain droplets obstruct the path of light,
+        affecting visual clarity.
+
+      </p>
+
+      <p>
+
+        Heavy rainfall dramatically decreases visibility
+        and increases transportation hazards.
+
+      </p>
+
+    </div>
+
+    <!-- LIGHT -->
+
+    <div class="info-card">
+
+      <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?q=80&w=1200&auto=format&fit=crop"
+      class="info-img">
+
+      <h2>🌙 Ambient Light</h2>
+
+      <p>
+
+        Environmental brightness is measured using
+        the LDR sensor.
+
+      </p>
+
+      <p>
+
+        Low light conditions reduce visibility,
+        especially when combined with rain or pollution.
+
+      </p>
+
+    </div>
+
+  </div>
 
 </div>
 
 <!-- CHART -->
 
-<div class="chart">
+<div class="chart-container">
 
-<canvas id="chart"></canvas>
+  <h1 class="section-title">
+    Live Environmental Analytics
+  </h1>
+
+  <canvas id="myChart"></canvas>
+
+</div>
+
+<div class="footer">
+
+  AERIS IoT Environmental Monitoring Dashboard
 
 </div>
 
@@ -294,162 +536,184 @@ margin-top:10px;
 
 <script type="module">
 
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import { initializeApp }
 
-import { getDatabase, ref, onValue } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
+from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 
-/* FIREBASE CONFIG */
+import {
+
+  getDatabase,
+  ref,
+  onValue
+
+}
+
+from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
+
+// FIREBASE CONFIG
 
 const firebaseConfig = {
 
-apiKey: "YOUR_API_KEY",
+  apiKey: "YOUR_API_KEY",
 
-authDomain: "YOUR_AUTH_DOMAIN",
+  authDomain: "YOUR_AUTH_DOMAIN",
 
-databaseURL: "YOUR_DATABASE_URL",
+  databaseURL: "YOUR_DATABASE_URL",
 
-projectId: "YOUR_PROJECT_ID",
+  projectId: "YOUR_PROJECT_ID",
 
-storageBucket: "YOUR_STORAGE_BUCKET",
+  storageBucket: "YOUR_STORAGE_BUCKET",
 
-messagingSenderId: "YOUR_SENDER_ID",
+  messagingSenderId: "YOUR_SENDER_ID",
 
-appId: "YOUR_APP_ID"
-
+  appId: "YOUR_APP_ID"
 };
 
 const app = initializeApp(firebaseConfig);
 
 const db = getDatabase(app);
 
-/* POPUP */
+// CHART
 
-function popup(msg){
+const ctx = document.getElementById('myChart');
 
-let d=document.createElement("div");
+const chart = new Chart(ctx, {
 
-d.className="popup";
+  type: 'line',
 
-d.innerHTML=msg;
+  data: {
 
-document.body.appendChild(d);
+    labels: [],
 
-setTimeout(()=>d.remove(),4000);
+    datasets: [
 
-}
+      {
 
-/* BIND DATA */
+        label: 'VRI',
 
-function bind(path,id){
+        data: [],
 
-onValue(ref(db,path),(snap)=>{
+        borderColor: '#00ffff',
 
-document.getElementById(id).innerText=snap.val();
+        backgroundColor: 'rgba(0,255,255,0.1)',
 
+        tension: 0.4
+      }
+
+    ]
+  },
+
+  options: {
+
+    responsive:true,
+
+    plugins: {
+
+      legend: {
+
+        labels: {
+
+          color:'white'
+        }
+      }
+    },
+
+    scales: {
+
+      x: {
+
+        ticks: {
+
+          color:'white'
+        }
+      },
+
+      y: {
+
+        ticks: {
+
+          color:'white'
+        }
+      }
+    }
+  }
 });
 
-}
+// LIVE DATA
 
-bind("/AERIS/Temperature","temp");
+onValue(ref(db,"AERIS/Temperature"),(snapshot)=>{
 
-bind("/AERIS/Humidity","hum");
-
-bind("/AERIS/PM25","pm");
-
-bind("/AERIS/VRI","vri");
-
-bind("/AERIS/PRED","pred");
-
-/* STATUS */
-
-onValue(ref(db,"/AERIS/VRI"),(snap)=>{
-
-let v=snap.val();
-
-let s=document.getElementById("status");
-
-if(v>=75){
-
-s.innerHTML="SAFE VISIBILITY";
-
-s.className="safe";
-
-popup("🌿 Excellent air quality in Kolkata");
-
-}
-
-else if(v>=50){
-
-s.innerHTML="MODERATE VISIBILITY";
-
-s.className="mid";
-
-popup("🌫 Moderate haze detected");
-
-}
-
-else{
-
-s.innerHTML="DANGER VISIBILITY";
-
-s.className="danger";
-
-popup("🚨 Danger! Low visibility in Kolkata");
-
-}
-
+  document.getElementById("temp").innerHTML =
+  snapshot.val() + " °C";
 });
 
-/* CHART */
+onValue(ref(db,"AERIS/Humidity"),(snapshot)=>{
 
-const ctx=document.getElementById("chart");
-
-const chart=new Chart(ctx,{
-
-type:"line",
-
-data:{
-
-labels:[],
-
-datasets:[{
-
-label:"VRI",
-
-data:[],
-
-borderColor:"#00ffff",
-
-tension:0.3
-
-}]
-
-}
-
+  document.getElementById("hum").innerHTML =
+  snapshot.val() + " %";
 });
 
-onValue(ref(db,"/AERIS/VRI"),(snap)=>{
+onValue(ref(db,"AERIS/PM25"),(snapshot)=>{
 
-let v=snap.val();
+  document.getElementById("pm").innerHTML =
+  snapshot.val();
+});
 
-chart.data.labels.push(new Date().toLocaleTimeString());
+onValue(ref(db,"AERIS/VRI"),(snapshot)=>{
 
-chart.data.datasets[0].data.push(v);
+  let value = snapshot.val();
 
-if(chart.data.labels.length>10){
+  document.getElementById("vri").innerHTML =
+  Math.round(value);
 
-chart.data.labels.shift();
+  let status =
+  document.getElementById("vriStatus");
 
-chart.data.datasets[0].data.shift();
+  if(value >= 75){
 
-}
+    status.innerHTML = "SAFE VISIBILITY";
 
-chart.update();
+    status.className = "status safe";
+  }
 
+  else if(value >= 50){
+
+    status.innerHTML =
+    "MODERATE VISIBILITY";
+
+    status.className =
+    "status moderate";
+  }
+
+  else{
+
+    status.innerHTML =
+    "DANGER VISIBILITY";
+
+    status.className =
+    "status danger";
+  }
+
+  // UPDATE CHART
+
+  const time =
+  new Date().toLocaleTimeString();
+
+  chart.data.labels.push(time);
+
+  chart.data.datasets[0].data.push(value);
+
+  if(chart.data.labels.length > 10){
+
+    chart.data.labels.shift();
+
+    chart.data.datasets[0].data.shift();
+  }
+
+  chart.update();
 });
 
 </script>
 
 </body>
-
 </html>
