@@ -6,11 +6,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>AERIS FUTURE DASHBOARD</title>
+<title>AERIS LOGIN SYSTEM</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 <style>
 
@@ -18,7 +16,6 @@
 margin:0;
 padding:0;
 box-sizing:border-box;
-scroll-behavior:smooth;
 }
 
 body{
@@ -34,9 +31,15 @@ min-height:100vh;
 
 overflow-x:hidden;
 
+display:flex;
+
+justify-content:center;
+
+align-items:center;
+
 }
 
-/* BACKGROUND */
+/* GLOW */
 
 body::before{
 
@@ -82,149 +85,63 @@ z-index:-1;
 
 }
 
-/* HEADER */
-
-header{
-
-padding:40px;
-
-text-align:center;
-
-animation:fadeUp 1s ease;
-
-}
-
-header h1{
-
-font-size:4rem;
-
-letter-spacing:6px;
-
-color:#00ffff;
-
-text-shadow:0 0 20px cyan;
-
-}
-
-header p{
-
-margin-top:10px;
-
-color:#aaa;
-
-font-size:1rem;
-
-}
-
-/* LIVE DOT */
-
-.live{
-
-display:inline-block;
-
-width:12px;
-height:12px;
-
-border-radius:50%;
-
-background:#00ff88;
-
-margin-left:10px;
-
-animation:pulse 1s infinite;
-
-}
-
-@keyframes pulse{
-
-0%{
-transform:scale(1);
-opacity:1;
-}
-
-50%{
-transform:scale(1.5);
-opacity:0.5;
-}
-
-100%{
-transform:scale(1);
-opacity:1;
-}
-
-}
-
-.location-box{
-
-width:90%;
-
-margin:10px auto 30px auto;
-
-background:rgba(255,255,255,0.05);
-
-padding:15px;
-
-border-radius:15px;
-
-text-align:center;
-
-color:#00ffff;
-
-backdrop-filter:blur(10px);
-
-border:1px solid rgba(255,255,255,0.08);
-
-}
-
-/* AUTH */
+/* LOGIN BOX */
 
 .auth-box{
 
-width:90%;
-
-margin:30px auto;
+width:420px;
 
 background:rgba(255,255,255,0.05);
 
-padding:30px;
+padding:40px;
 
-border-radius:25px;
+border-radius:30px;
 
 backdrop-filter:blur(15px);
 
 border:1px solid rgba(255,255,255,0.08);
 
-text-align:center;
+box-shadow:0 0 30px rgba(0,255,255,0.15);
 
 animation:fadeUp 1s ease;
 
 }
 
-.auth-box h2{
+.auth-box h1{
+
+text-align:center;
+
+font-size:2.8rem;
 
 color:#00ffff;
 
-margin-bottom:15px;
+margin-bottom:10px;
+
+text-shadow:0 0 15px cyan;
 
 }
 
 .auth-box p{
 
-color:#bbb;
+text-align:center;
 
-margin-bottom:20px;
+color:#aaa;
+
+margin-bottom:30px;
 
 }
 
 .auth-box input{
 
-width:80%;
+width:100%;
 
-padding:15px;
+padding:16px;
 
-margin:10px 0;
+margin-bottom:20px;
 
 border:none;
+
+outline:none;
 
 border-radius:15px;
 
@@ -234,114 +151,119 @@ color:white;
 
 font-size:1rem;
 
-outline:none;
+}
+
+.auth-box input::placeholder{
+
+color:#bbb;
 
 }
 
-.auth-buttons{
+.buttons{
 
 display:flex;
 
-justify-content:center;
+flex-direction:column;
 
 gap:15px;
 
-flex-wrap:wrap;
-
-margin-top:20px;
-
 }
 
-.auth-buttons button{
+.buttons button{
 
-padding:15px 25px;
+padding:15px;
 
 border:none;
 
 border-radius:15px;
 
-background:rgba(0,255,255,0.15);
-
-color:white;
-
 font-size:1rem;
+
+font-family:Poppins;
 
 cursor:pointer;
 
 transition:0.3s;
 
-font-family:Poppins;
+background:rgba(0,255,255,0.12);
+
+color:white;
 
 }
 
-.auth-buttons button:hover{
+.buttons button:hover{
 
 background:cyan;
 
 color:black;
 
-transform:scale(1.05);
+transform:scale(1.03);
 
 }
 
 #userInfo{
 
-margin-top:20px;
+margin-top:25px;
 
-color:#00ff99;
+text-align:center;
 
 font-size:1rem;
 
-}
+color:#00ff99;
 
-/* CONTAINER */
-
-.container{
-
-width:90%;
-
-margin:auto;
-
-display:grid;
-
-grid-template-columns:
-repeat(auto-fit,minmax(250px,1fr));
-
-gap:25px;
+line-height:1.6;
 
 }
 
-/* CARD */
+/* DASHBOARD */
+
+#dashboard{
+
+display:none;
+
+width:100%;
+
+padding:40px;
+
+text-align:center;
+
+}
+
+#dashboard h1{
+
+font-size:3rem;
+
+color:#00ffff;
+
+margin-bottom:20px;
+
+text-shadow:0 0 20px cyan;
+
+}
+
+#dashboard p{
+
+color:#aaa;
+
+font-size:1.1rem;
+
+}
 
 .card{
 
-background:
-rgba(255,255,255,0.05);
+width:300px;
 
-border-radius:25px;
+margin:40px auto;
+
+background:rgba(255,255,255,0.05);
 
 padding:30px;
+
+border-radius:25px;
 
 backdrop-filter:blur(15px);
 
 border:1px solid rgba(255,255,255,0.08);
-
-transition:0.3s;
-
-position:relative;
-
-overflow:hidden;
-
-animation:fadeUp 1s ease;
-
-}
-
-.card:hover{
-
-transform:translateY(-10px);
-
-box-shadow:
-0 0 25px rgba(0,255,255,0.25);
 
 }
 
@@ -353,243 +275,11 @@ margin-bottom:15px;
 
 }
 
-.value{
+.card .value{
 
-font-size:2.7rem;
+font-size:3rem;
 
 font-weight:600;
-
-}
-
-.status{
-
-margin-top:12px;
-
-color:#bbb;
-
-}
-
-.safe{
-
-color:#00ff99;
-
-}
-
-.moderate{
-
-color:#ffd000;
-
-}
-
-.danger{
-
-color:#ff4444;
-
-}
-
-/* BUTTONS */
-
-.graph-buttons{
-
-display:flex;
-
-justify-content:center;
-
-gap:15px;
-
-margin-top:50px;
-
-flex-wrap:wrap;
-
-}
-
-.graph-buttons button{
-
-padding:12px 20px;
-
-border:none;
-
-border-radius:12px;
-
-background:rgba(255,255,255,0.08);
-
-color:white;
-
-cursor:pointer;
-
-backdrop-filter:blur(10px);
-
-transition:0.3s;
-
-font-family:Poppins;
-
-}
-
-.graph-buttons button:hover{
-
-background:cyan;
-
-color:black;
-
-}
-
-/* TITLES */
-
-.section-title{
-
-text-align:center;
-
-margin-top:80px;
-margin-bottom:40px;
-
-font-size:2.5rem;
-
-color:cyan;
-
-}
-
-/* INFO */
-
-.info-section{
-
-width:90%;
-
-margin:auto;
-
-}
-
-.info-grid{
-
-display:grid;
-
-grid-template-columns:
-repeat(auto-fit,minmax(300px,1fr));
-
-gap:30px;
-
-}
-
-.info-card{
-
-background:
-rgba(255,255,255,0.05);
-
-border-radius:25px;
-
-overflow:hidden;
-
-backdrop-filter:blur(15px);
-
-border:1px solid rgba(255,255,255,0.08);
-
-transition:0.3s;
-
-}
-
-.info-card:hover{
-
-transform:translateY(-10px);
-
-box-shadow:
-0 0 25px rgba(0,255,255,0.25);
-
-}
-
-.info-img{
-
-width:100%;
-
-height:220px;
-
-object-fit:cover;
-
-}
-
-.info-card h2{
-
-padding:20px;
-
-color:#00ffff;
-
-}
-
-.info-card p{
-
-padding:0 20px 20px 20px;
-
-line-height:1.8;
-
-color:#ccc;
-
-}
-
-/* CHART */
-
-.chart-container{
-
-width:90%;
-
-margin:80px auto;
-
-background:
-rgba(255,255,255,0.05);
-
-padding:30px;
-
-border-radius:30px;
-
-backdrop-filter:blur(15px);
-
-}
-
-/* GAUGE */
-
-.gauge-wrap{
-
-width:320px;
-
-margin:auto;
-
-padding:20px;
-
-}
-
-/* FAQ */
-
-.faq-container{
-
-width:90%;
-
-margin:auto;
-
-display:grid;
-
-gap:20px;
-
-}
-
-.faq{
-
-background:rgba(255,255,255,0.05);
-
-padding:25px;
-
-border-radius:20px;
-
-backdrop-filter:blur(12px);
-
-border:1px solid rgba(255,255,255,0.08);
-
-transition:0.3s;
-
-}
-
-.faq:hover{
-
-transform:translateY(-6px);
-
-box-shadow:
-0 0 20px rgba(0,255,255,0.2);
 
 }
 
@@ -603,11 +293,11 @@ top:20px;
 
 right:20px;
 
+padding:15px 20px;
+
+border-radius:15px;
+
 background:rgba(0,255,255,0.12);
-
-padding:15px;
-
-border-radius:12px;
 
 border:1px solid cyan;
 
@@ -619,32 +309,26 @@ transition:0.5s;
 
 z-index:999;
 
-color:white;
-
 }
 
-.footer{
-
-text-align:center;
-
-padding:30px;
-
-color:#888;
-
-margin-top:50px;
-
-}
+/* ANIMATION */
 
 @keyframes fadeUp{
 
 0%{
+
 opacity:0;
+
 transform:translateY(30px);
+
 }
 
 100%{
+
 opacity:1;
+
 transform:translateY(0px);
+
 }
 
 }
@@ -655,45 +339,47 @@ transform:translateY(0px);
 
 <body>
 
-<header>
+<!-- LOGIN PAGE -->
+
+<div id="loginPage" class="auth-box">
 
 <h1>AERIS</h1>
 
 <p>
 
-Advanced Environmental Visibility Monitoring System
-
-<span class="live"></span>
+Secure Environmental Monitoring Access
 
 </p>
-
-</header>
-
-<div class="location-box">
-
-📍 Live Monitoring Location: Kolkata, India
-
-</div>
-
-<div class="auth-box">
-
-<h2>🔐 AERIS CLOUD ACCESS</h2>
-
-<p>Create Account Or Login To Continue</p>
 
 <input type="email" id="email" placeholder="Enter Email">
 
 <input type="password" id="password" placeholder="Enter Password">
 
-<div class="auth-buttons">
+<div class="buttons">
 
-<button id="signupBtn">Create Account</button>
+<button id="signupBtn">
 
-<button id="loginBtn">Login</button>
+Create Account
 
-<button id="googleLogin">Google Login</button>
+</button>
 
-<button id="logoutBtn">Logout</button>
+<button id="loginBtn">
+
+Login
+
+</button>
+
+<button id="googleBtn">
+
+Continue With Google
+
+</button>
+
+<button id="logoutBtn">
+
+Logout
+
+</button>
 
 </div>
 
@@ -705,113 +391,25 @@ Advanced Environmental Visibility Monitoring System
 
 </div>
 
-<div class="container">
+<!-- DASHBOARD -->
 
-<div class="card">
+<div id="dashboard">
 
-<h2>🌡 Temperature</h2>
+<h1>AERIS DASHBOARD</h1>
 
-<div class="value" id="temp">--</div>
+<p>
 
-<div class="status">Atmospheric Temperature</div>
+Advanced Environmental Visibility Monitoring System
 
-</div>
-
-<div class="card">
-
-<h2>💧 Humidity</h2>
-
-<div class="value" id="hum">--</div>
-
-<div class="status">Relative Humidity</div>
-
-</div>
-
-<div class="card">
-
-<h2>🌫 PM2.5</h2>
-
-<div class="value" id="pm">--</div>
-
-<div class="status">Air Particle Concentration</div>
-
-</div>
+</p>
 
 <div class="card">
 
 <h2>📡 VRI</h2>
 
-<div class="value" id="vri">--</div>
+<div class="value" id="vri">
 
-<div class="status" id="vriStatus">Loading...</div>
-
-</div>
-
-</div>
-
-<div class="graph-buttons">
-
-<button onclick="switchGraph('vri')">VRI</button>
-
-<button onclick="switchGraph('temp')">TEMP</button>
-
-<button onclick="switchGraph('hum')">HUMIDITY</button>
-
-<button onclick="switchGraph('pm')">PM2.5</button>
-
-</div>
-
-<div class="chart-container">
-
-<h1 class="section-title">
-
-Live Environmental Analytics
-
-</h1>
-
-<canvas id="myChart"></canvas>
-
-</div>
-
-<div class="chart-container">
-
-<h1 class="section-title">
-
-Live VRI Meter
-
-</h1>
-
-<div class="gauge-wrap">
-
-<canvas id="gaugeChart"></canvas>
-
-</div>
-
-</div>
-
-<div class="info-section">
-
-<h1 class="section-title">
-
-Future Visibility Prediction
-
-</h1>
-
-<div class="container">
-
-<div class="card">
-
-<h2>🔮 AI Visibility Forecast</h2>
-
-<div class="value" id="predictionText">
-
-Analyzing...
-
-</div>
-
-<div class="status">
-
-Predicted atmospheric visibility conditions
+82
 
 </div>
 
@@ -819,77 +417,9 @@ Predicted atmospheric visibility conditions
 
 </div>
 
-</div>
-
-<div class="info-section">
-
-<h1 class="section-title">
-
-Frequently Asked Questions
-
-</h1>
-
-<div class="faq-container">
-
-<div class="faq">
-
-<h3>❓ What is VRI?</h3>
-
-<p>
-
-VRI estimates atmospheric visibility using pollution, humidity, rainfall and ambient light conditions.
-
-</p>
-
-</div>
-
-<div class="faq">
-
-<h3>❓ Why is PM2.5 dangerous?</h3>
-
-<p>
-
-PM2.5 particles reduce atmospheric clarity and affect respiratory health.
-
-</p>
-
-</div>
-
-<div class="faq">
-
-<h3>❓ How does humidity affect visibility?</h3>
-
-<p>
-
-Humidity creates microscopic droplets which increase fog formation.
-
-</p>
-
-</div>
-
-<div class="faq">
-
-<h3>❓ What happens during low VRI?</h3>
-
-<p>
-
-Low VRI indicates dangerous environmental visibility conditions.
-
-</p>
-
-</div>
-
-</div>
-
-</div>
+<!-- POPUP -->
 
 <div id="popup" class="popup"></div>
-
-<div class="footer">
-
-AERIS IoT Environmental Monitoring Dashboard
-
-</div>
 
 <script type="module">
 
@@ -899,22 +429,11 @@ from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 
 import {
 
-getDatabase,
-ref,
-onValue
-
-}
-
-from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
-
-import {
-
 getAuth,
 createUserWithEmailAndPassword,
 signInWithEmailAndPassword,
 GoogleAuthProvider,
-signInWithRedirect,
-getRedirectResult,
+signInWithPopup,
 signOut,
 onAuthStateChanged
 
@@ -922,65 +441,85 @@ onAuthStateChanged
 
 from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
+/* FIREBASE CONFIG */
+
 const firebaseConfig = {
 
 apiKey: "YOUR_API_KEY",
 
-authDomain: "YOUR_AUTH_DOMAIN",
-
-databaseURL: "YOUR_DATABASE_URL",
+authDomain: "YOUR_PROJECT.firebaseapp.com",
 
 projectId: "YOUR_PROJECT_ID",
 
-storageBucket: "YOUR_STORAGE_BUCKET",
+storageBucket: "YOUR_PROJECT.appspot.com",
 
-messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
+messagingSenderId: "YOUR_SENDER_ID",
 
 appId: "YOUR_APP_ID"
 
 };
 
-const app = initializeApp(firebaseConfig);
+/* INIT */
 
-const db = getDatabase(app);
+const app = initializeApp(firebaseConfig);
 
 const auth = getAuth(app);
 
 const provider = new GoogleAuthProvider();
 
+/* ELEMENTS */
+
+const loginPage =
+document.getElementById("loginPage");
+
+const dashboard =
+document.getElementById("dashboard");
+
+const userInfo =
+document.getElementById("userInfo");
+
 /* POPUP */
 
 function showPopup(msg){
 
-const popup=document.getElementById("popup");
+const popup =
+document.getElementById("popup");
 
-popup.innerHTML=msg;
+popup.innerHTML = msg;
 
-popup.style.opacity="1";
+popup.style.opacity = "1";
 
 setTimeout(()=>{
 
-popup.style.opacity="0";
+popup.style.opacity = "0";
 
 },4000);
 
 }
 
-/* AUTH */
+/* SIGNUP */
 
 document.getElementById("signupBtn")
 
 .addEventListener("click",()=>{
 
-const email=document.getElementById("email").value;
+const email =
+document.getElementById("email").value;
 
-const password=document.getElementById("password").value;
+const password =
+document.getElementById("password").value;
 
-createUserWithEmailAndPassword(auth,email,password)
+createUserWithEmailAndPassword(
 
-.then(()=>{
+auth,
+email,
+password
 
-showPopup("🟢 Account Created");
+)
+
+.then((userCredential)=>{
+
+showPopup("🟢 Account Created Successfully");
 
 })
 
@@ -992,17 +531,27 @@ showPopup("❌ " + error.message);
 
 });
 
+/* LOGIN */
+
 document.getElementById("loginBtn")
 
 .addEventListener("click",()=>{
 
-const email=document.getElementById("email").value;
+const email =
+document.getElementById("email").value;
 
-const password=document.getElementById("password").value;
+const password =
+document.getElementById("password").value;
 
-signInWithEmailAndPassword(auth,email,password)
+signInWithEmailAndPassword(
 
-.then(()=>{
+auth,
+email,
+password
+
+)
+
+.then((userCredential)=>{
 
 showPopup("🟢 Login Successful");
 
@@ -1016,23 +565,17 @@ showPopup("❌ " + error.message);
 
 });
 
-document.getElementById("googleLogin")
+/* GOOGLE LOGIN */
+
+document.getElementById("googleBtn")
 
 .addEventListener("click",()=>{
 
-signInWithRedirect(auth,provider);
-
-});
-
-getRedirectResult(auth)
+signInWithPopup(auth,provider)
 
 .then((result)=>{
 
-if(result){
-
 showPopup("☁ Google Login Successful");
-
-}
 
 })
 
@@ -1040,7 +583,13 @@ showPopup("☁ Google Login Successful");
 
 showPopup("❌ " + error.message);
 
+console.log(error);
+
 });
+
+});
+
+/* LOGOUT */
 
 document.getElementById("logoutBtn")
 
@@ -1056,355 +605,37 @@ showPopup("🚪 Logged Out");
 
 });
 
-onAuthStateChanged(auth,(user)=>{
+/* AUTH STATE */
 
-const userInfo=document.getElementById("userInfo");
+onAuthStateChanged(auth,(user)=>{
 
 if(user){
 
+loginPage.style.display = "none";
+
+dashboard.style.display = "block";
+
 userInfo.innerHTML =
 
-"🟢 Logged In As:<br><br>" +
+"🟢 Logged in as:<br>" +
 
 user.email;
+
+showPopup("☁ Connected To AERIS Cloud");
+
+console.log(user);
 
 }
 
 else{
+
+loginPage.style.display = "block";
+
+dashboard.style.display = "none";
 
 userInfo.innerHTML =
 
 "🔴 Authentication Required";
-
-}
-
-});
-
-/* CHART */
-
-let currentGraph = "vri";
-
-const ctx = document.getElementById('myChart');
-
-const chart = new Chart(ctx, {
-
-type: 'line',
-
-data: {
-
-labels: [],
-
-datasets: [{
-
-label: 'VRI',
-
-data: [],
-
-borderColor: '#00ffff',
-
-backgroundColor: 'rgba(0,255,255,0.1)',
-
-tension: 0.4
-
-}]
-
-},
-
-options: {
-
-responsive:true,
-
-plugins:{
-
-legend:{
-
-labels:{
-
-color:'white'
-
-}
-
-}
-
-},
-
-scales:{
-
-x:{
-
-ticks:{
-
-color:'white'
-
-}
-
-},
-
-y:{
-
-ticks:{
-
-color:'white'
-
-}
-
-}
-
-}
-
-}
-
-});
-
-window.switchGraph = function(type){
-
-currentGraph = type;
-
-chart.data.labels=[];
-
-chart.data.datasets[0].data=[];
-
-chart.data.datasets[0].label=type.toUpperCase();
-
-chart.update();
-
-};
-
-/* GAUGE */
-
-const gaugeCtx =
-
-document.getElementById('gaugeChart');
-
-const gaugeChart = new Chart(gaugeCtx, {
-
-type:'doughnut',
-
-data:{
-
-labels:['VRI','Remaining'],
-
-datasets:[{
-
-data:[50,50],
-
-backgroundColor:[
-
-'#00ffff',
-
-'rgba(255,255,255,0.08)'
-
-],
-
-borderWidth:0
-
-}]
-
-},
-
-options:{
-
-rotation:270,
-
-circumference:180,
-
-cutout:'75%',
-
-plugins:{
-
-legend:{
-
-display:false
-
-}
-
-}
-
-}
-
-});
-
-/* UPDATE CHART */
-
-function updateChart(value){
-
-const time = new Date().toLocaleTimeString();
-
-chart.data.labels.push(time);
-
-chart.data.datasets[0].data.push(value);
-
-if(chart.data.labels.length > 10){
-
-chart.data.labels.shift();
-
-chart.data.datasets[0].data.shift();
-
-}
-
-chart.update();
-
-}
-
-/* PREDICTION */
-
-function updatePrediction(vri){
-
-let text =
-
-document.getElementById("predictionText");
-
-if(vri >= 80){
-
-text.innerHTML =
-
-"🌿 Excellent visibility expected.";
-
-}
-
-else if(vri >= 60){
-
-text.innerHTML =
-
-"🌤 Moderate haze may develop.";
-
-}
-
-else if(vri >= 40){
-
-text.innerHTML =
-
-"🌫 Visibility deterioration likely.";
-
-}
-
-else{
-
-text.innerHTML =
-
-"🚨 Severe visibility reduction predicted.";
-
-}
-
-}
-
-/* FIREBASE DATA */
-
-onValue(ref(db,"AERIS/Temperature"),
-
-(snapshot)=>{
-
-let val=snapshot.val();
-
-document.getElementById("temp").innerHTML=
-
-val + " °C";
-
-if(currentGraph=="temp"){
-
-updateChart(val);
-
-}
-
-});
-
-onValue(ref(db,"AERIS/Humidity"),
-
-(snapshot)=>{
-
-let val=snapshot.val();
-
-document.getElementById("hum").innerHTML=
-
-val + " %";
-
-if(currentGraph=="hum"){
-
-updateChart(val);
-
-}
-
-});
-
-onValue(ref(db,"AERIS/PM25"),
-
-(snapshot)=>{
-
-let val=snapshot.val();
-
-document.getElementById("pm").innerHTML=
-
-val;
-
-if(currentGraph=="pm"){
-
-updateChart(val);
-
-}
-
-});
-
-onValue(ref(db,"AERIS/VRI"),
-
-(snapshot)=>{
-
-let value=snapshot.val();
-
-document.getElementById("vri").innerHTML=
-
-Math.round(value);
-
-let status=
-
-document.getElementById("vriStatus");
-
-if(value >= 75){
-
-status.innerHTML=
-
-"SAFE VISIBILITY";
-
-status.className=
-
-"status safe";
-
-}
-
-else if(value >= 50){
-
-status.innerHTML=
-
-"MODERATE VISIBILITY";
-
-status.className=
-
-"status moderate";
-
-}
-
-else{
-
-status.innerHTML=
-
-"DANGER VISIBILITY";
-
-status.className=
-
-"status danger";
-
-}
-
-gaugeChart.data.datasets[0].data=
-
-[value,100-value];
-
-gaugeChart.update();
-
-updatePrediction(value);
-
-if(currentGraph=="vri"){
-
-updateChart(value);
 
 }
 
