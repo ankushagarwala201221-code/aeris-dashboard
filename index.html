@@ -175,6 +175,130 @@ border:1px solid rgba(255,255,255,0.08);
 
 }
 
+/* AUTH */
+
+.auth-box{
+
+width:90%;
+
+margin:30px auto;
+
+background:rgba(255,255,255,0.05);
+
+padding:30px;
+
+border-radius:25px;
+
+backdrop-filter:blur(15px);
+
+border:1px solid rgba(255,255,255,0.08);
+
+text-align:center;
+
+animation:fadeUp 1s ease;
+
+}
+
+.auth-box h2{
+
+color:#00ffff;
+
+margin-bottom:15px;
+
+}
+
+.auth-box p{
+
+color:#bbb;
+
+margin-bottom:20px;
+
+}
+
+.auth-box input{
+
+width:80%;
+
+padding:15px;
+
+margin:10px 0;
+
+border:none;
+
+border-radius:15px;
+
+background:rgba(255,255,255,0.08);
+
+color:white;
+
+font-size:1rem;
+
+outline:none;
+
+}
+
+.auth-box input::placeholder{
+
+color:#bbb;
+
+}
+
+.auth-buttons{
+
+display:flex;
+
+justify-content:center;
+
+gap:15px;
+
+flex-wrap:wrap;
+
+margin-top:20px;
+
+}
+
+.auth-buttons button{
+
+padding:15px 25px;
+
+border:none;
+
+border-radius:15px;
+
+background:rgba(0,255,255,0.15);
+
+color:white;
+
+font-size:1rem;
+
+cursor:pointer;
+
+transition:0.3s;
+
+font-family:Poppins;
+
+}
+
+.auth-buttons button:hover{
+
+background:cyan;
+
+color:black;
+
+transform:scale(1.05);
+
+}
+
+#userInfo{
+
+margin-top:20px;
+
+color:#00ff99;
+
+font-size:1rem;
+
+}
+
 /* CONTAINER */
 
 .container{
@@ -602,6 +726,56 @@ Advanced Environmental Visibility Monitoring System
 
 </div>
 
+<div class="auth-box">
+
+<h2>🔐 AERIS CLOUD ACCESS</h2>
+
+<p>
+
+Create Account Or Login To Continue
+
+</p>
+
+<input type="email" id="email" placeholder="Enter Email">
+
+<input type="password" id="password" placeholder="Enter Password">
+
+<div class="auth-buttons">
+
+<button id="signupBtn">
+
+Create Account
+
+</button>
+
+<button id="loginBtn">
+
+Login
+
+</button>
+
+<button id="googleLogin">
+
+Google Login
+
+</button>
+
+<button id="logoutBtn">
+
+Logout
+
+</button>
+
+</div>
+
+<div id="userInfo">
+
+🔴 Not Logged In
+
+</div>
+
+</div>
+
 <div class="container">
 
 <div class="card">
@@ -662,249 +836,7 @@ Loading...
 
 </div>
 
-<div class="graph-buttons">
-
-<button onclick="switchGraph('vri')">VRI</button>
-
-<button onclick="switchGraph('temp')">TEMP</button>
-
-<button onclick="switchGraph('hum')">HUMIDITY</button>
-
-<button onclick="switchGraph('pm')">PM2.5</button>
-
-</div>
-
-<div class="info-section">
-
-<h1 class="section-title">
-
-Environmental Visibility Factors
-
-</h1>
-
-<div class="info-grid">
-
-<div class="info-card">
-
-<img src="https://images.unsplash.com/photo-1513828583688-c52646db42da?q=80&w=1200&auto=format&fit=crop"
-class="info-img">
-
-<h2>🌫 PM2.5 Pollution</h2>
-
-<p>
-
-PM2.5 particles are microscopic pollutants suspended in air.
-
-</p>
-
-<p>
-
-High PM2.5 concentration reduces atmospheric visibility by scattering light and forming haze layers.
-
-</p>
-
-</div>
-
-<div class="info-card">
-
-<img src="https://images.unsplash.com/photo-1504608524841-42fe6f032b4b?q=80&w=1200&auto=format&fit=crop"
-class="info-img">
-
-<h2>💧 Humidity</h2>
-
-<p>
-
-Humidity represents the amount of water vapor present in the atmosphere.
-
-</p>
-
-<p>
-
-Humidity increases fog formation and atmospheric scattering.
-
-</p>
-
-</div>
-
-<div class="info-card">
-
-<img src="https://images.unsplash.com/photo-1515694346937-94d85e41e6f0?q=80&w=1200&auto=format&fit=crop"
-class="info-img">
-
-<h2>🌧 Rain Detection</h2>
-
-<p>
-
-Rainfall affects visibility by introducing suspended droplets into the atmosphere.
-
-</p>
-
-<p>
-
-Heavy rain causes optical obstruction and road hazards.
-
-</p>
-
-</div>
-
-<div class="info-card">
-
-<img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?q=80&w=1200&auto=format&fit=crop"
-class="info-img">
-
-<h2>🌙 Ambient Light</h2>
-
-<p>
-
-Ambient light intensity is measured using the LDR sensor.
-
-</p>
-
-<p>
-
-Low light conditions reduce visibility and increase danger.
-
-</p>
-
-</div>
-
-</div>
-
-</div>
-
-<div class="chart-container">
-
-<h1 class="section-title">
-
-Live Environmental Analytics
-
-</h1>
-
-<canvas id="myChart"></canvas>
-
-</div>
-
-<div class="chart-container">
-
-<h1 class="section-title">
-
-Live VRI Meter
-
-</h1>
-
-<div class="gauge-wrap">
-
-<canvas id="gaugeChart"></canvas>
-
-</div>
-
-</div>
-
-<div class="info-section">
-
-<h1 class="section-title">
-
-Future Visibility Prediction
-
-</h1>
-
-<div class="container">
-
-<div class="card">
-
-<h2>🔮 AI Visibility Forecast</h2>
-
-<div class="value" id="predictionText">
-
-Analyzing...
-
-</div>
-
-<div class="status">
-
-Predicted atmospheric visibility conditions
-based on environmental sensor analytics.
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-<div class="info-section">
-
-<h1 class="section-title">
-
-Frequently Asked Questions
-
-</h1>
-
-<div class="faq-container">
-
-<div class="faq">
-
-<h3>❓ What is VRI?</h3>
-
-<p>
-
-VRI estimates atmospheric visibility using pollution,
-humidity, rainfall and ambient light conditions.
-
-</p>
-
-</div>
-
-<div class="faq">
-
-<h3>❓ Why is PM2.5 dangerous?</h3>
-
-<p>
-
-PM2.5 particles reduce atmospheric clarity and
-affect respiratory health.
-
-</p>
-
-</div>
-
-<div class="faq">
-
-<h3>❓ How does humidity affect visibility?</h3>
-
-<p>
-
-Humidity creates microscopic droplets which
-increase fog formation.
-
-</p>
-
-</div>
-
-<div class="faq">
-
-<h3>❓ What happens during low VRI?</h3>
-
-<p>
-
-Low VRI indicates dangerous environmental visibility conditions.
-
-</p>
-
-</div>
-
-</div>
-
-</div>
-
 <div id="popup" class="popup"></div>
-
-<div class="footer">
-
-AERIS IoT Environmental Monitoring Dashboard
-
-</div>
 
 <script type="module">
 
@@ -921,6 +853,20 @@ onValue
 }
 
 from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
+
+import {
+
+getAuth,
+createUserWithEmailAndPassword,
+signInWithEmailAndPassword,
+GoogleAuthProvider,
+signInWithPopup,
+signOut,
+onAuthStateChanged
+
+}
+
+from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
 const firebaseConfig = {
 
@@ -944,6 +890,10 @@ const app = initializeApp(firebaseConfig);
 
 const db = getDatabase(app);
 
+const auth = getAuth(app);
+
+const provider = new GoogleAuthProvider();
+
 function showPopup(msg){
 
 const popup=document.getElementById("popup");
@@ -960,304 +910,114 @@ popup.style.opacity="0";
 
 }
 
-let currentGraph = "vri";
+document.getElementById("signupBtn")
 
-const ctx = document.getElementById('myChart');
+.addEventListener("click",()=>{
 
-const chart = new Chart(ctx, {
+const email =
+document.getElementById("email").value;
 
-type: 'line',
+const password =
+document.getElementById("password").value;
 
-data: {
+createUserWithEmailAndPassword(auth,email,password)
 
-labels: [],
+.then(()=>{
 
-datasets: [
+showPopup("🟢 Account Created Successfully");
 
-{
+})
 
-label: 'VRI',
+.catch((error)=>{
 
-data: [],
-
-borderColor: '#00ffff',
-
-backgroundColor: 'rgba(0,255,255,0.1)',
-
-tension: 0.4
-
-}
-
-]
-
-},
-
-options: {
-
-responsive:true,
-
-plugins: {
-
-legend: {
-
-labels: {
-
-color:'white'
-
-}
-
-}
-
-},
-
-scales: {
-
-x: {
-
-ticks: {
-
-color:'white'
-
-}
-
-},
-
-y: {
-
-ticks: {
-
-color:'white'
-
-}
-
-}
-
-}
-
-}
+showPopup("❌ " + error.message);
 
 });
 
-const gaugeCtx =
-document.getElementById('gaugeChart');
+});
 
-const gaugeChart =
-new Chart(gaugeCtx, {
+document.getElementById("loginBtn")
 
-type: 'doughnut',
+.addEventListener("click",()=>{
 
-data: {
+const email =
+document.getElementById("email").value;
 
-labels: ['VRI','Remaining'],
+const password =
+document.getElementById("password").value;
 
-datasets: [{
+signInWithEmailAndPassword(auth,email,password)
 
-data: [50,50],
+.then(()=>{
 
-backgroundColor: [
+showPopup("🟢 Login Successful");
 
-'#00ffff',
+})
 
-'rgba(255,255,255,0.08)'
+.catch((error)=>{
 
-],
-
-borderWidth:0
-
-}]
-
-},
-
-options: {
-
-rotation:270,
-
-circumference:180,
-
-cutout:'75%',
-
-plugins:{
-
-legend:{
-display:false
-}
-
-}
-
-}
+showPopup("❌ " + error.message);
 
 });
 
-function updatePrediction(vri){
+});
 
-let text =
-document.getElementById("predictionText");
+document.getElementById("googleLogin")
 
-if(vri >= 80){
+.addEventListener("click",()=>{
 
-text.innerHTML =
-"🌿 Excellent visibility expected across Kolkata.";
+signInWithPopup(auth,provider)
 
-}
+.then(()=>{
 
-else if(vri >= 60){
+showPopup("☁ Google Login Successful");
 
-text.innerHTML =
-"🌤 Moderate atmospheric haze may develop.";
+})
 
-}
+.catch((error)=>{
 
-else if(vri >= 40){
+showPopup("❌ " + error.message);
 
-text.innerHTML =
-"🌫 Visibility deterioration likely.";
+});
+
+});
+
+document.getElementById("logoutBtn")
+
+.addEventListener("click",()=>{
+
+signOut(auth)
+
+.then(()=>{
+
+showPopup("🚪 Logged Out");
+
+});
+
+});
+
+onAuthStateChanged(auth,(user)=>{
+
+const userInfo =
+document.getElementById("userInfo");
+
+if(user){
+
+userInfo.innerHTML =
+
+"🟢 Logged in as:<br>" +
+
+user.email;
+
+showPopup("☁ Connected To AERIS Cloud");
 
 }
 
 else{
 
-text.innerHTML =
-"🚨 Severe visibility reduction predicted.";
+userInfo.innerHTML =
 
-}
-
-}
-
-window.switchGraph = function(type){
-
-currentGraph = type;
-
-chart.data.labels = [];
-
-chart.data.datasets[0].data = [];
-
-chart.data.datasets[0].label = type.toUpperCase();
-
-chart.update();
-
-showPopup("📊 Switched to " + type.toUpperCase());
-
-}
-
-function updateChart(value){
-
-const time = new Date().toLocaleTimeString();
-
-chart.data.labels.push(time);
-
-chart.data.datasets[0].data.push(value);
-
-if(chart.data.labels.length > 10){
-
-chart.data.labels.shift();
-
-chart.data.datasets[0].data.shift();
-
-}
-
-chart.update();
-
-}
-
-onValue(ref(db,"AERIS/Temperature"),(snapshot)=>{
-
-let val = snapshot.val();
-
-document.getElementById("temp").innerHTML =
-val + " °C";
-
-if(currentGraph=="temp"){
-
-updateChart(val);
-
-}
-
-});
-
-onValue(ref(db,"AERIS/Humidity"),(snapshot)=>{
-
-let val = snapshot.val();
-
-document.getElementById("hum").innerHTML =
-val + " %";
-
-if(currentGraph=="hum"){
-
-updateChart(val);
-
-}
-
-});
-
-onValue(ref(db,"AERIS/PM25"),(snapshot)=>{
-
-let val = snapshot.val();
-
-document.getElementById("pm").innerHTML =
-val;
-
-if(currentGraph=="pm"){
-
-updateChart(val);
-
-}
-
-});
-
-onValue(ref(db,"AERIS/VRI"),(snapshot)=>{
-
-let value = snapshot.val();
-
-document.getElementById("vri").innerHTML =
-Math.round(value);
-
-let status =
-document.getElementById("vriStatus");
-
-if(value >= 75){
-
-status.innerHTML = "SAFE VISIBILITY";
-
-status.className = "status safe";
-
-showPopup("🌿 Atmospheric conditions stable in Kolkata");
-
-}
-
-else if(value >= 50){
-
-status.innerHTML =
-"MODERATE VISIBILITY";
-
-status.className =
-"status moderate";
-
-showPopup("🌫 Moderate haze detected");
-
-}
-
-else{
-
-status.innerHTML =
-"DANGER VISIBILITY";
-
-status.className =
-"status danger";
-
-showPopup("🚨 Visibility hazard warning");
-
-}
-
-gaugeChart.data.datasets[0].data =
-[value,100-value];
-
-gaugeChart.update();
-
-updatePrediction(value);
-
-if(currentGraph=="vri"){
-
-updateChart(value);
+"🔴 Authentication Required";
 
 }
 
