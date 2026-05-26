@@ -6,9 +6,11 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>AERIS LOGIN SYSTEM</title>
+<title>AERIS FUTURE DASHBOARD</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 <style>
 
@@ -16,6 +18,7 @@
 margin:0;
 padding:0;
 box-sizing:border-box;
+scroll-behavior:smooth;
 }
 
 body{
@@ -23,23 +26,18 @@ body{
 font-family:'Poppins',sans-serif;
 
 background:
-linear-gradient(135deg,#050816,#0a1026,#111b3a);
+linear-gradient(135deg,#040816,#081225,#111b3a);
 
 color:white;
 
-min-height:100vh;
-
 overflow-x:hidden;
 
-display:flex;
-
-justify-content:center;
-
-align-items:center;
-
+min-height:100vh;
 }
 
-/* GLOW */
+/* ===========================
+BACKGROUND EFFECTS
+=========================== */
 
 body::before{
 
@@ -47,20 +45,19 @@ content:"";
 
 position:fixed;
 
-width:600px;
-height:600px;
+width:650px;
+height:650px;
 
 background:cyan;
 
-filter:blur(220px);
+filter:blur(250px);
 
 opacity:0.10;
 
 top:-200px;
-left:-150px;
+left:-180px;
 
 z-index:-1;
-
 }
 
 body::after{
@@ -69,27 +66,40 @@ content:"";
 
 position:fixed;
 
-width:500px;
-height:500px;
+width:600px;
+height:600px;
 
 background:#00ff88;
 
-filter:blur(220px);
+filter:blur(240px);
 
 opacity:0.08;
 
-bottom:-150px;
-right:-120px;
+bottom:-250px;
+right:-180px;
 
 z-index:-1;
-
 }
 
-/* LOGIN BOX */
+/* ===========================
+LOGIN PAGE
+=========================== */
+
+#loginPage{
+
+min-height:100vh;
+
+display:flex;
+
+justify-content:center;
+align-items:center;
+
+padding:30px;
+}
 
 .auth-box{
 
-width:420px;
+width:430px;
 
 background:rgba(255,255,255,0.05);
 
@@ -97,38 +107,35 @@ padding:40px;
 
 border-radius:30px;
 
-backdrop-filter:blur(15px);
+backdrop-filter:blur(18px);
 
 border:1px solid rgba(255,255,255,0.08);
 
 box-shadow:0 0 30px rgba(0,255,255,0.15);
 
 animation:fadeUp 1s ease;
-
 }
 
 .auth-box h1{
 
-text-align:center;
+font-size:3rem;
 
-font-size:2.8rem;
+text-align:center;
 
 color:#00ffff;
 
+text-shadow:0 0 20px cyan;
+
 margin-bottom:10px;
-
-text-shadow:0 0 15px cyan;
-
 }
 
 .auth-box p{
 
 text-align:center;
 
-color:#aaa;
+color:#bbb;
 
 margin-bottom:30px;
-
 }
 
 .auth-box input{
@@ -150,26 +157,23 @@ background:rgba(255,255,255,0.08);
 color:white;
 
 font-size:1rem;
-
 }
 
 .auth-box input::placeholder{
 
 color:#bbb;
-
 }
 
-.buttons{
+.auth-buttons{
 
 display:flex;
 
 flex-direction:column;
 
 gap:15px;
-
 }
 
-.buttons button{
+.auth-buttons button{
 
 padding:15px;
 
@@ -177,94 +181,196 @@ border:none;
 
 border-radius:15px;
 
+cursor:pointer;
+
 font-size:1rem;
 
 font-family:Poppins;
-
-cursor:pointer;
-
-transition:0.3s;
 
 background:rgba(0,255,255,0.12);
 
 color:white;
 
+transition:0.3s;
 }
 
-.buttons button:hover{
+.auth-buttons button:hover{
 
 background:cyan;
 
 color:black;
 
 transform:scale(1.03);
-
 }
 
 #userInfo{
 
-margin-top:25px;
+margin-top:20px;
+
+text-align:center;
+
+color:#00ff99;
+
+line-height:1.7;
+}
+
+/* ===========================
+MAIN DASHBOARD
+=========================== */
+
+#dashboard{
+
+display:none;
+}
+
+header{
+
+padding:40px;
+
+text-align:center;
+}
+
+header h1{
+
+font-size:3.5rem;
+
+letter-spacing:5px;
+
+color:#00ffff;
+
+text-shadow:0 0 25px cyan;
+}
+
+header p{
+
+margin-top:10px;
+
+color:#aaa;
+}
+
+.live{
+
+display:inline-block;
+
+width:12px;
+height:12px;
+
+border-radius:50%;
+
+background:#00ff88;
+
+margin-left:10px;
+
+animation:pulse 1s infinite;
+}
+
+@keyframes pulse{
+
+0%{
+transform:scale(1);
+opacity:1;
+}
+
+50%{
+transform:scale(1.5);
+opacity:0.5;
+}
+
+100%{
+transform:scale(1);
+opacity:1;
+}
+}
+
+/* ===========================
+LOCATION
+=========================== */
+
+.location-box{
+
+width:90%;
+
+margin:auto;
+
+background:rgba(255,255,255,0.05);
+
+padding:18px;
+
+border-radius:20px;
+
+backdrop-filter:blur(14px);
+
+border:1px solid rgba(255,255,255,0.08);
 
 text-align:center;
 
 font-size:1rem;
 
-color:#00ff99;
-
-line-height:1.6;
-
-}
-
-/* DASHBOARD */
-
-#dashboard{
-
-display:none;
-
-width:100%;
-
-padding:40px;
-
-text-align:center;
-
-}
-
-#dashboard h1{
-
-font-size:3rem;
-
 color:#00ffff;
-
-margin-bottom:20px;
-
-text-shadow:0 0 20px cyan;
-
 }
 
-#dashboard p{
+/* ===========================
+CARDS
+=========================== */
 
-color:#aaa;
+.container{
 
-font-size:1.1rem;
+width:90%;
 
+margin:40px auto;
+
+display:grid;
+
+grid-template-columns:
+repeat(auto-fit,minmax(250px,1fr));
+
+gap:25px;
 }
 
 .card{
-
-width:300px;
-
-margin:40px auto;
 
 background:rgba(255,255,255,0.05);
 
 padding:30px;
 
-border-radius:25px;
+border-radius:30px;
 
-backdrop-filter:blur(15px);
+backdrop-filter:blur(16px);
 
 border:1px solid rgba(255,255,255,0.08);
 
+transition:0.3s;
+
+animation:fadeUp 1s ease;
+
+position:relative;
+
+overflow:hidden;
+}
+
+.card:hover{
+
+transform:translateY(-10px);
+
+box-shadow:
+0 0 30px rgba(0,255,255,0.2);
+}
+
+.card::before{
+
+content:"";
+
+position:absolute;
+
+width:150px;
+height:150px;
+
+background:rgba(0,255,255,0.08);
+
+border-radius:50%;
+
+top:-70px;
+right:-70px;
 }
 
 .card h2{
@@ -272,65 +378,347 @@ border:1px solid rgba(255,255,255,0.08);
 color:#00ffff;
 
 margin-bottom:15px;
-
 }
 
-.card .value{
+.value{
 
 font-size:3rem;
 
-font-weight:600;
-
+font-weight:700;
 }
 
-/* POPUP */
+.status{
+
+margin-top:12px;
+
+color:#bbb;
+}
+
+.safe{
+
+color:#00ff99;
+}
+
+.moderate{
+
+color:#ffd000;
+}
+
+.danger{
+
+color:#ff5555;
+}
+
+/* ===========================
+BUTTONS
+=========================== */
+
+.graph-buttons{
+
+display:flex;
+
+justify-content:center;
+
+gap:15px;
+
+flex-wrap:wrap;
+
+margin-top:40px;
+}
+
+.graph-buttons button{
+
+padding:14px 22px;
+
+border:none;
+
+border-radius:14px;
+
+background:rgba(255,255,255,0.08);
+
+color:white;
+
+cursor:pointer;
+
+transition:0.3s;
+
+font-family:Poppins;
+}
+
+.graph-buttons button:hover{
+
+background:cyan;
+
+color:black;
+}
+
+/* ===========================
+SECTION TITLE
+=========================== */
+
+.section-title{
+
+text-align:center;
+
+margin-top:80px;
+margin-bottom:40px;
+
+font-size:2.7rem;
+
+color:#00ffff;
+
+text-shadow:0 0 18px cyan;
+}
+
+/* ===========================
+CHART
+=========================== */
+
+.chart-container{
+
+width:90%;
+
+margin:50px auto;
+
+background:rgba(255,255,255,0.05);
+
+padding:30px;
+
+border-radius:30px;
+
+backdrop-filter:blur(16px);
+
+border:1px solid rgba(255,255,255,0.08);
+}
+
+/* ===========================
+GAUGE
+=========================== */
+
+.gauge-wrap{
+
+width:350px;
+
+margin:auto;
+}
+
+/* ===========================
+INFO SECTION
+=========================== */
+
+.info-grid{
+
+width:90%;
+
+margin:auto;
+
+display:grid;
+
+grid-template-columns:
+repeat(auto-fit,minmax(320px,1fr));
+
+gap:30px;
+}
+
+.info-card{
+
+background:rgba(255,255,255,0.05);
+
+border-radius:28px;
+
+overflow:hidden;
+
+backdrop-filter:blur(16px);
+
+border:1px solid rgba(255,255,255,0.08);
+
+transition:0.3s;
+}
+
+.info-card:hover{
+
+transform:translateY(-10px);
+
+box-shadow:
+0 0 30px rgba(0,255,255,0.18);
+}
+
+.info-img{
+
+width:100%;
+
+height:220px;
+
+object-fit:cover;
+}
+
+.info-card h2{
+
+padding:20px;
+
+color:#00ffff;
+}
+
+.info-card p{
+
+padding:0 20px 20px 20px;
+
+line-height:1.9;
+
+color:#ccc;
+}
+
+/* ===========================
+FAQ
+=========================== */
+
+.faq-container{
+
+width:90%;
+
+margin:auto;
+
+display:grid;
+
+gap:20px;
+}
+
+.faq{
+
+background:rgba(255,255,255,0.05);
+
+padding:25px;
+
+border-radius:24px;
+
+backdrop-filter:blur(14px);
+
+border:1px solid rgba(255,255,255,0.08);
+
+transition:0.3s;
+}
+
+.faq:hover{
+
+transform:translateY(-6px);
+
+box-shadow:
+0 0 20px rgba(0,255,255,0.15);
+}
+
+.faq h3{
+
+color:#00ffff;
+
+margin-bottom:10px;
+}
+
+.faq p{
+
+line-height:1.8;
+
+color:#ccc;
+}
+
+/* ===========================
+PREDICTION BOX
+=========================== */
+
+.prediction{
+
+width:90%;
+
+margin:50px auto;
+
+background:rgba(255,255,255,0.05);
+
+padding:40px;
+
+border-radius:30px;
+
+backdrop-filter:blur(16px);
+
+border:1px solid rgba(255,255,255,0.08);
+
+text-align:center;
+}
+
+.prediction h2{
+
+font-size:2rem;
+
+color:#00ffff;
+
+margin-bottom:20px;
+}
+
+#predictionText{
+
+font-size:1.4rem;
+
+line-height:1.8;
+
+color:#00ff99;
+}
+
+/* ===========================
+POPUP
+=========================== */
 
 .popup{
 
 position:fixed;
 
 top:20px;
-
 right:20px;
 
-padding:15px 20px;
-
-border-radius:15px;
+padding:16px 22px;
 
 background:rgba(0,255,255,0.12);
 
 border:1px solid cyan;
 
-backdrop-filter:blur(12px);
+border-radius:18px;
+
+backdrop-filter:blur(14px);
 
 opacity:0;
 
 transition:0.5s;
 
 z-index:999;
-
 }
 
-/* ANIMATION */
+/* ===========================
+FOOTER
+=========================== */
+
+.footer{
+
+text-align:center;
+
+padding:40px;
+
+margin-top:60px;
+
+color:#888;
+}
+
+/* ===========================
+ANIMATION
+=========================== */
 
 @keyframes fadeUp{
 
 0%{
-
 opacity:0;
-
-transform:translateY(30px);
-
+transform:translateY(40px);
 }
 
 100%{
-
 opacity:1;
-
 transform:translateY(0px);
-
 }
-
 }
 
 </style>
@@ -341,13 +729,15 @@ transform:translateY(0px);
 
 <!-- LOGIN PAGE -->
 
-<div id="loginPage" class="auth-box">
+<div id="loginPage">
+
+<div class="auth-box">
 
 <h1>AERIS</h1>
 
 <p>
 
-Secure Environmental Monitoring Access
+Secure Environmental Monitoring Cloud Access
 
 </p>
 
@@ -355,7 +745,7 @@ Secure Environmental Monitoring Access
 
 <input type="password" id="password" placeholder="Enter Password">
 
-<div class="buttons">
+<div class="auth-buttons">
 
 <button id="signupBtn">
 
@@ -375,17 +765,13 @@ Continue With Google
 
 </button>
 
-<button id="logoutBtn">
-
-Logout
-
-</button>
-
 </div>
 
 <div id="userInfo">
 
-🔴 Not Logged In
+🔴 Authentication Required
+
+</div>
 
 </div>
 
@@ -395,13 +781,81 @@ Logout
 
 <div id="dashboard">
 
-<h1>AERIS DASHBOARD</h1>
+<header>
+
+<h1>AERIS</h1>
 
 <p>
 
 Advanced Environmental Visibility Monitoring System
 
+<span class="live"></span>
+
 </p>
+
+</header>
+
+<div class="location-box">
+
+📍 Kolkata, India | Live Atmospheric Monitoring Active
+
+</div>
+
+<div class="container">
+
+<div class="card">
+
+<h2>🌡 Temperature</h2>
+
+<div class="value" id="temp">
+
+--
+
+</div>
+
+<div class="status">
+
+Atmospheric Temperature
+
+</div>
+
+</div>
+
+<div class="card">
+
+<h2>💧 Humidity</h2>
+
+<div class="value" id="hum">
+
+--
+
+</div>
+
+<div class="status">
+
+Relative Humidity
+
+</div>
+
+</div>
+
+<div class="card">
+
+<h2>🌫 PM2.5</h2>
+
+<div class="value" id="pm">
+
+--
+
+</div>
+
+<div class="status">
+
+Air Particle Concentration
+
+</div>
+
+</div>
 
 <div class="card">
 
@@ -409,7 +863,13 @@ Advanced Environmental Visibility Monitoring System
 
 <div class="value" id="vri">
 
-82
+--
+
+</div>
+
+<div class="status" id="vriStatus">
+
+Loading...
 
 </div>
 
@@ -417,7 +877,275 @@ Advanced Environmental Visibility Monitoring System
 
 </div>
 
-<!-- POPUP -->
+<div class="graph-buttons">
+
+<button onclick="switchGraph('vri')">
+
+VRI
+
+</button>
+
+<button onclick="switchGraph('temp')">
+
+TEMP
+
+</button>
+
+<button onclick="switchGraph('hum')">
+
+HUMIDITY
+
+</button>
+
+<button onclick="switchGraph('pm')">
+
+PM2.5
+
+</button>
+
+<button id="logoutBtn">
+
+LOGOUT
+
+</button>
+
+</div>
+
+<div class="chart-container">
+
+<h1 class="section-title">
+
+Live Environmental Analytics
+
+</h1>
+
+<canvas id="myChart"></canvas>
+
+</div>
+
+<div class="chart-container">
+
+<h1 class="section-title">
+
+Live VRI Gauge
+
+</h1>
+
+<div class="gauge-wrap">
+
+<canvas id="gaugeChart"></canvas>
+
+</div>
+
+</div>
+
+<div class="prediction">
+
+<h2>
+
+🔮 Future Visibility Prediction
+
+</h2>
+
+<div id="predictionText">
+
+Analyzing future atmospheric conditions...
+
+</div>
+
+</div>
+
+<h1 class="section-title">
+
+Environmental Visibility Factors
+
+</h1>
+
+<div class="info-grid">
+
+<div class="info-card">
+
+<img src="https://images.unsplash.com/photo-1513828583688-c52646db42da?q=80&w=1200&auto=format&fit=crop"
+class="info-img">
+
+<h2>
+
+🌫 PM2.5 Pollution
+
+</h2>
+
+<p>
+
+PM2.5 consists of microscopic pollutants suspended within the atmosphere. These particles are generated through industrial emissions, fossil fuel combustion, traffic pollution and urban atmospheric contamination.
+
+</p>
+
+<p>
+
+High PM2.5 concentration increases atmospheric haze, reduces visibility and impacts respiratory health significantly.
+
+</p>
+
+</div>
+
+<div class="info-card">
+
+<img src="https://images.unsplash.com/photo-1504608524841-42fe6f032b4b?q=80&w=1200&auto=format&fit=crop"
+class="info-img">
+
+<h2>
+
+💧 Humidity
+
+</h2>
+
+<p>
+
+Humidity measures the amount of water vapor present within air. Increased humidity forms microscopic droplets which increase atmospheric scattering.
+
+</p>
+
+<p>
+
+High humidity often creates fog formation and reduces long-distance visibility.
+
+</p>
+
+</div>
+
+<div class="info-card">
+
+<img src="https://images.unsplash.com/photo-1515694346937-94d85e41e6f0?q=80&w=1200&auto=format&fit=crop"
+class="info-img">
+
+<h2>
+
+🌧 Rainfall
+
+</h2>
+
+<p>
+
+Rain introduces suspended droplets into the atmosphere, reducing visibility and increasing light diffusion.
+
+</p>
+
+<p>
+
+Heavy rainfall combined with haze creates severe atmospheric visibility hazards.
+
+</p>
+
+</div>
+
+<div class="info-card">
+
+<img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?q=80&w=1200&auto=format&fit=crop"
+class="info-img">
+
+<h2>
+
+🌙 Ambient Light
+
+</h2>
+
+<p>
+
+Ambient brightness is measured using the LDR sensor. Lower brightness levels reduce environmental clarity.
+
+</p>
+
+<p>
+
+Night conditions combined with pollution or fog drastically reduce safe visibility.
+
+</p>
+
+</div>
+
+</div>
+
+<h1 class="section-title">
+
+Frequently Asked Questions
+
+</h1>
+
+<div class="faq-container">
+
+<div class="faq">
+
+<h3>
+
+❓ What is VRI?
+
+</h3>
+
+<p>
+
+VRI stands for Visibility Risk Index. It predicts environmental visibility conditions using atmospheric sensor analytics.
+
+</p>
+
+</div>
+
+<div class="faq">
+
+<h3>
+
+❓ Why is PM2.5 harmful?
+
+</h3>
+
+<p>
+
+PM2.5 particles reduce atmospheric clarity and may affect respiratory health during prolonged exposure.
+
+</p>
+
+</div>
+
+<div class="faq">
+
+<h3>
+
+❓ How does humidity affect visibility?
+
+</h3>
+
+<p>
+
+Humidity increases microscopic water droplets in air which create fog and increase atmospheric scattering.
+
+</p>
+
+</div>
+
+<div class="faq">
+
+<h3>
+
+❓ What happens during low VRI?
+
+</h3>
+
+<p>
+
+Low VRI indicates dangerous visibility conditions and increased atmospheric haze.
+
+</p>
+
+</div>
+
+</div>
+
+<div class="footer">
+
+AERIS FUTURISTIC IoT ENVIRONMENTAL MONITORING SYSTEM
+
+</div>
+
+</div>
 
 <div id="popup" class="popup"></div>
 
@@ -426,6 +1154,16 @@ Advanced Environmental Visibility Monitoring System
 import { initializeApp }
 
 from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+
+import {
+
+getDatabase,
+ref,
+onValue
+
+}
+
+from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
 
 import {
 
@@ -441,7 +1179,9 @@ onAuthStateChanged
 
 from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
-/* FIREBASE CONFIG */
+/* ===========================
+FIREBASE CONFIG
+=========================== */
 
 const firebaseConfig = {
 
@@ -449,7 +1189,9 @@ apiKey: "AIzaSyCFcOMkIMOSLhVuw_iFpBdrH5w2ABDMsXc",
 
 authDomain: "aeris-dashboard.firebaseapp.com",
 
-projectId: "aeris-dashboard",
+databaseURL: "YOUR_DATABASE_URL",
+
+projectId: "https://aeris-dashboard-default-rtdb.asia-southeast1.firebasedatabase.app/",
 
 storageBucket: "aeris-dashboard.firebasestorage.app",
 
@@ -459,15 +1201,21 @@ appId: "1:782547152481:web:5dd3b9ccc6cde3dc04c420"
 
 };
 
-/* INIT */
+/* ===========================
+INIT
+=========================== */
 
 const app = initializeApp(firebaseConfig);
+
+const db = getDatabase(app);
 
 const auth = getAuth(app);
 
 const provider = new GoogleAuthProvider();
 
-/* ELEMENTS */
+/* ===========================
+ELEMENTS
+=========================== */
 
 const loginPage =
 document.getElementById("loginPage");
@@ -478,7 +1226,9 @@ document.getElementById("dashboard");
 const userInfo =
 document.getElementById("userInfo");
 
-/* POPUP */
+/* ===========================
+POPUP
+=========================== */
 
 function showPopup(msg){
 
@@ -494,10 +1244,11 @@ setTimeout(()=>{
 popup.style.opacity = "0";
 
 },4000);
-
 }
 
-/* SIGNUP */
+/* ===========================
+AUTH
+=========================== */
 
 document.getElementById("signupBtn")
 
@@ -517,7 +1268,7 @@ password
 
 )
 
-.then((userCredential)=>{
+.then(()=>{
 
 showPopup("🟢 Account Created Successfully");
 
@@ -530,8 +1281,6 @@ showPopup("❌ " + error.message);
 });
 
 });
-
-/* LOGIN */
 
 document.getElementById("loginBtn")
 
@@ -551,7 +1300,7 @@ password
 
 )
 
-.then((userCredential)=>{
+.then(()=>{
 
 showPopup("🟢 Login Successful");
 
@@ -565,15 +1314,13 @@ showPopup("❌ " + error.message);
 
 });
 
-/* GOOGLE LOGIN */
-
 document.getElementById("googleBtn")
 
 .addEventListener("click",()=>{
 
 signInWithPopup(auth,provider)
 
-.then((result)=>{
+.then(()=>{
 
 showPopup("☁ Google Login Successful");
 
@@ -589,8 +1336,6 @@ console.log(error);
 
 });
 
-/* LOGOUT */
-
 document.getElementById("logoutBtn")
 
 .addEventListener("click",()=>{
@@ -604,8 +1349,6 @@ showPopup("🚪 Logged Out");
 });
 
 });
-
-/* AUTH STATE */
 
 onAuthStateChanged(auth,(user)=>{
 
@@ -623,19 +1366,432 @@ user.email;
 
 showPopup("☁ Connected To AERIS Cloud");
 
-console.log(user);
-
 }
 
 else{
 
-loginPage.style.display = "block";
+loginPage.style.display = "flex";
 
 dashboard.style.display = "none";
 
 userInfo.innerHTML =
 
 "🔴 Authentication Required";
+
+}
+
+});
+
+/* ===========================
+MAIN CHART
+=========================== */
+
+let currentGraph = "vri";
+
+const ctx =
+document.getElementById('myChart');
+
+const chart =
+new Chart(ctx, {
+
+type: 'line',
+
+data: {
+
+labels: [],
+
+datasets: [
+
+{
+
+label: 'VRI',
+
+data: [],
+
+borderColor: '#00ffff',
+
+backgroundColor:
+'rgba(0,255,255,0.1)',
+
+tension:0.4
+
+}
+
+]
+
+},
+
+options: {
+
+responsive:true,
+
+plugins: {
+
+legend: {
+
+labels: {
+
+color:'white'
+
+}
+
+}
+
+},
+
+scales: {
+
+x: {
+
+ticks: {
+
+color:'white'
+
+}
+
+},
+
+y: {
+
+ticks: {
+
+color:'white'
+
+}
+
+}
+
+}
+
+}
+
+});
+
+/* ===========================
+GAUGE CHART
+=========================== */
+
+const gaugeCtx =
+document.getElementById("gaugeChart");
+
+const gaugeChart =
+new Chart(gaugeCtx, {
+
+type:'doughnut',
+
+data: {
+
+labels:['VRI','Remaining'],
+
+datasets:[{
+
+data:[50,50],
+
+backgroundColor:[
+
+'#00ffff',
+'rgba(255,255,255,0.08)'
+
+],
+
+borderWidth:0
+
+}]
+
+},
+
+options: {
+
+rotation:270,
+
+circumference:180,
+
+cutout:'75%',
+
+plugins: {
+
+legend: {
+
+display:false
+
+}
+
+}
+
+}
+
+});
+
+/* ===========================
+SWITCH GRAPH
+=========================== */
+
+window.switchGraph = function(type){
+
+currentGraph = type;
+
+chart.data.labels = [];
+
+chart.data.datasets[0].data = [];
+
+chart.data.datasets[0].label =
+
+type.toUpperCase();
+
+chart.update();
+
+showPopup(
+
+"📊 Switched to " +
+
+type.toUpperCase()
+
+);
+
+}
+
+/* ===========================
+UPDATE CHART
+=========================== */
+
+function updateChart(value){
+
+const time =
+new Date().toLocaleTimeString();
+
+chart.data.labels.push(time);
+
+chart.data.datasets[0].data.push(value);
+
+if(chart.data.labels.length > 10){
+
+chart.data.labels.shift();
+
+chart.data.datasets[0].data.shift();
+
+}
+
+chart.update();
+}
+
+/* ===========================
+PREDICTION
+=========================== */
+
+function updatePrediction(vri){
+
+const prediction =
+document.getElementById(
+
+"predictionText"
+
+);
+
+if(vri >= 80){
+
+prediction.innerHTML =
+
+"🌿 Excellent atmospheric visibility predicted across Kolkata.";
+
+}
+
+else if(vri >= 60){
+
+prediction.innerHTML =
+
+"🌤 Moderate haze may develop during evening hours.";
+
+}
+
+else if(vri >= 40){
+
+prediction.innerHTML =
+
+"🌫 Visibility deterioration expected with increased atmospheric scattering.";
+
+}
+
+else{
+
+prediction.innerHTML =
+
+"🚨 Severe visibility hazard predicted due to pollution and humidity.";
+
+}
+
+}
+
+/* ===========================
+TEMPERATURE
+=========================== */
+
+onValue(
+
+ref(db,"AERIS/Temperature"),
+
+(snapshot)=>{
+
+let val = snapshot.val();
+
+document.getElementById(
+
+"temp"
+
+).innerHTML = val + " °C";
+
+if(currentGraph=="temp"){
+
+updateChart(val);
+
+}
+
+});
+
+/* ===========================
+HUMIDITY
+=========================== */
+
+onValue(
+
+ref(db,"AERIS/Humidity"),
+
+(snapshot)=>{
+
+let val = snapshot.val();
+
+document.getElementById(
+
+"hum"
+
+).innerHTML = val + " %";
+
+if(currentGraph=="hum"){
+
+updateChart(val);
+
+}
+
+});
+
+/* ===========================
+PM2.5
+=========================== */
+
+onValue(
+
+ref(db,"AERIS/PM25"),
+
+(snapshot)=>{
+
+let val = snapshot.val();
+
+document.getElementById(
+
+"pm"
+
+).innerHTML = val;
+
+if(currentGraph=="pm"){
+
+updateChart(val);
+
+}
+
+});
+
+/* ===========================
+VRI
+=========================== */
+
+onValue(
+
+ref(db,"AERIS/VRI"),
+
+(snapshot)=>{
+
+let value = snapshot.val();
+
+document.getElementById(
+
+"vri"
+
+).innerHTML =
+
+Math.round(value);
+
+let status =
+
+document.getElementById(
+
+"vriStatus"
+
+);
+
+if(value >= 75){
+
+status.innerHTML =
+
+"SAFE VISIBILITY";
+
+status.className =
+
+"status safe";
+
+showPopup(
+
+"🌿 Visibility conditions stable across Kolkata"
+
+);
+
+}
+
+else if(value >= 50){
+
+status.innerHTML =
+
+"MODERATE VISIBILITY";
+
+status.className =
+
+"status moderate";
+
+showPopup(
+
+"🌫 Moderate atmospheric haze detected"
+
+);
+
+}
+
+else{
+
+status.innerHTML =
+
+"DANGER VISIBILITY";
+
+status.className =
+
+"status danger";
+
+showPopup(
+
+"🚨 Severe visibility hazard detected"
+
+);
+
+}
+
+gaugeChart.data.datasets[0].data =
+
+[value,100-value];
+
+gaugeChart.update();
+
+updatePrediction(value);
+
+if(currentGraph=="vri"){
+
+updateChart(value);
 
 }
 
