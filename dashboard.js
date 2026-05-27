@@ -5,7 +5,9 @@ from "./firebase-config.js";
 import {
 
 ref,
-onValue
+onValue,
+push,
+set
 
 }
 
@@ -71,7 +73,7 @@ popup.style.opacity = "0";
 
 }
 
-/* AUTH CHECK */
+/* AUTH */
 
 onAuthStateChanged(auth,(user)=>{
 
@@ -87,7 +89,8 @@ showPopup("☁ Connected To AERIS Cloud");
 
 else{
 
-window.location.href = "index.html";
+window.location.href =
+"index.html";
 
 }
 
@@ -105,7 +108,8 @@ signOut(auth)
 
 showPopup("🚪 Logged Out");
 
-window.location.href = "index.html";
+window.location.href =
+"index.html";
 
 });
 
@@ -116,9 +120,13 @@ window.location.href = "index.html";
 const liveRef =
 ref(db,"AERIS/live");
 
+/* HISTORY SAVE TIMER */
+
+let lastSavedMinute = "";
+
 /* LIVE LISTENER */
 
-onValue(liveRef,(snapshot)=>{
+onValue(liveRef,async(snapshot)=>{
 
 const data = snapshot.val();
 
@@ -202,6 +210,14 @@ predictionText.innerHTML =
 
 }
 
+else if(hum > 90){
+
+predictionText.innerHTML =
+
+"High humidity may reduce visibility.";
+
+}
+
 else{
 
 predictionText.innerHTML =
@@ -210,7 +226,7 @@ predictionText.innerHTML =
 
 }
 
-/* ALERT SYSTEM */
+/* ALERTS */
 
 if(vri < 40){
 
@@ -219,8 +235,6 @@ alertText.innerHTML =
 "⚠ Severe visibility reduction detected.";
 
 alertText.style.color = "#ff4444";
-
-showPopup("⚠ Low Visibility Alert");
 
 }
 
@@ -232,8 +246,6 @@ alertText.innerHTML =
 
 alertText.style.color = "#ff4444";
 
-showPopup("⚠ Pollution Alert");
-
 }
 
 else{
@@ -243,6 +255,58 @@ alertText.innerHTML =
 "🟢 Environment Stable";
 
 alertText.style.color = "#00ff99";
+
+}
+
+/* HISTORY SYSTEM */
+
+const now = new Date();
+
+const minuteKey =
+
+now.getHours() + ":" + now.getMinutes();
+
+/* SAVE ONCE PER MINUTE */
+
+if(lastSavedMinute !== minuteKey){
+
+lastSavedMinute = minuteKey;
+
+try{
+
+const historyRef =
+
+push(ref(db,"AERIS/HISTORY"));
+
+await set(historyRef,{
+
+temp:temp,
+
+hum:hum,
+
+pm:pm,
+
+rain:rain,
+
+light:light,
+
+vri:vri,
+
+timestamp:now.toLocaleString(),
+
+unix:Date.now()
+
+});
+
+console.log("📊 History Saved");
+
+}
+
+catch(error){
+
+console.log(error);
+
+}
 
 }
 
