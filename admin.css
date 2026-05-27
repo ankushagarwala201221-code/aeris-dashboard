@@ -1,12 +1,8 @@
 body{
 
 margin:0;
-padding:0;
-
 font-family:Poppins;
-
 background:#050816;
-
 color:white;
 
 }
@@ -14,7 +10,6 @@ color:white;
 header{
 
 text-align:center;
-
 padding:30px;
 
 }
@@ -23,11 +18,9 @@ header h1{
 
 color:#00ffff;
 
-text-shadow:0 0 20px cyan;
-
 }
 
-.admin-container{
+.grid{
 
 display:grid;
 
@@ -45,11 +38,11 @@ background:rgba(255,255,255,0.05);
 
 padding:20px;
 
-border-radius:20px;
+border-radius:15px;
 
 text-align:center;
 
-border:1px solid rgba(255,255,255,0.08);
+border:1px solid rgba(255,255,255,0.1);
 
 }
 
@@ -63,19 +56,17 @@ color:#00ffff;
 
 font-size:2rem;
 
-margin-top:10px;
-
 }
 
 button{
 
 padding:12px 18px;
 
+background:cyan;
+
 border:none;
 
-border-radius:12px;
-
-background:cyan;
+border-radius:10px;
 
 cursor:pointer;
 
@@ -83,12 +74,22 @@ cursor:pointer;
 
 .panel{
 
-margin:30px;
+margin:20px;
 
 padding:20px;
 
 background:rgba(255,255,255,0.05);
 
-border-radius:20px;
+border-radius:15px;
+
+}
+
+#accessDenied{
+
+text-align:center;
+
+margin-top:100px;
+
+color:red;
 
 }
