@@ -53,6 +53,8 @@ document.getElementById("alertText");
 
 const accountInfo =
 document.getElementById("accountInfo");
+const locationE1 = 
+  document.getElementById("location");
 
 /* POPUP */
 
@@ -166,6 +168,9 @@ rainEl.innerHTML = rain;
 lightEl.innerHTML = light;
 
 vriEl.innerHTML = vri;
+  /*location*/
+  location.innerHTML =
+    " Kolkata, India"
 
 /* VRI STATUS */
 
