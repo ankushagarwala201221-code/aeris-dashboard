@@ -1,51 +1,86 @@
-import { db }
+import { auth, db }
 
 from "./firebase-config.js";
 
 import {
 
+onAuthStateChanged
+
+}
+
+from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+import {
+
 ref,
 onValue,
-set
+set,
+get
 
 }
 
 from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
 
-/* LIVE DATA */
+const adminPanel =
+document.getElementById("adminPanel");
 
-const liveRef =
-ref(db,"AERIS");
+const accessDenied =
+document.getElementById("accessDenied");
 
-/* LISTENER */
+const liveData =
+document.getElementById("liveData");
 
-onValue(liveRef,(snap)=>{
+/* AUTH CHECK */
 
-const data = snap.val();
+onAuthStateChanged(auth, async(user)=>{
 
-document.getElementById("liveData")
+if(!user){
 
-.innerText = JSON.stringify(data,null,2);
+window.location.href = "index.html";
 
-});
-
-/* SYSTEM STATUS */
-
-onValue(ref(db,"AERIS/live"),(snap)=>{
-
-if(snap.exists()){
-
-document.getElementById("systemStatus")
-
-.innerText = "ONLINE";
+return;
 
 }
 
+/* CHECK ROLE */
+
+const userRef =
+ref(db,"AERIS/USERS/" + user.uid);
+
+const snap =
+await get(userRef);
+
+if(!snap.exists() || snap.val().role !== "admin"){
+
+accessDenied.innerHTML =
+"<h1>❌ ACCESS DENIED</h1>";
+
+return;
+
+}
+
+/* GRANT ACCESS */
+
+accessDenied.style.display = "none";
+
+adminPanel.style.display = "block";
+
 });
 
-/* RESET SYSTEM */
+/* LIVE DB VIEW */
 
-window.resetSystem = function(){
+onValue(ref(db,"AERIS"),(snap)=>{
+
+liveData.innerText =
+JSON.stringify(snap.val(),null,2);
+
+});
+
+/* SYSTEM RESET */
+
+document.getElementById("resetBtn")
+
+.addEventListener("click",()=>{
 
 set(ref(db,"AERIS/live"),{
 
@@ -60,4 +95,4 @@ vri:0
 
 alert("System Reset Done");
 
-};
+});
