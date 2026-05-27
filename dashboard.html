@@ -1,1 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
 
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>AERIS DASHBOARD</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap"
+rel="stylesheet">
+
+<link rel="stylesheet" href="dashboard.css">
+
+</head>
+
+<body>
+
+<!-- HEADER -->
+
+<header>
+
+<h1>AERIS</h1>
+
+<p>
+
+Advanced Environmental Visibility Monitoring System
+
+<span class="live"></span>
+
+</p>
+
+</header>
+
+<!-- TOP BAR -->
+
+<div class="top-bar">
+
+<div id="accountInfo">
+
+🟢 Connected
+
+</div>
+
+<div class="top-buttons">
+
+<button onclick="window.location.href='profile.html'">
+
+Profile
+
+</button>
+
+<button id="logoutBtn">
+
+Logout
+
+</button>
+
+</div>
+
+</div>
+
+<!-- LOCATION -->
+
+<div class="location-box">
+
+📍 Monitoring Location:
+Kolkata, India
+
+</div>
+
+<!-- DASHBOARD -->
+
+<div class="container">
+
+<div class="card">
+
+<h2>🌡 Temperature</h2>
+
+<div class="value" id="temp">
+
+--
+
+</div>
+
+<div class="status">
+
+Atmospheric Temperature
+
+</div>
+
+</div>
+
+<div class="card">
+
+<h2>💧 Humidity</h2>
+
+<div class="value" id="hum">
+
+--
+
+</div>
+
+<div class="status">
+
+Relative Humidity
+
+</div>
+
+</div>
+
+<div class="card">
+
+<h2>🌫 PM2.5</h2>
+
+<div class="value" id="pm">
+
+--
+
+</div>
+
+<div class="status">
+
+Air Particle Concentration
+
+</div>
+
+</div>
+
+<div class="card">
+
+<h2>📡 VRI</h2>
+
+<div class="value" id="vri">
+
+--
+
+</div>
+
+<div class="status" id="vriStatus">
+
+Loading...
+
+</div>
+
+</div>
+
+<div class="card">
+
+<h2>🌧 Rain</h2>
+
+<div class="value" id="rain">
+
+--
+
+</div>
+
+<div class="status">
+
+Rain Detection
+
+</div>
+
+</div>
+
+<div class="card">
+
+<h2>🌙 Light</h2>
+
+<div class="value" id="light">
+
+--
+
+</div>
+
+<div class="status">
+
+Ambient Light
+
+</div>
+
+</div>
+
+</div>
+
+<!-- ANALYTICS -->
+
+<h1 class="section-title">
+
+Live Analytics
+
+</h1>
+
+<div class="analytics">
+
+<div class="analytics-card">
+
+<h2>🔮 AI Prediction</h2>
+
+<p id="predictionText">
+
+Analyzing atmosphere...
+
+</p>
+
+</div>
+
+<div class="analytics-card">
+
+<h2>⚠ Visibility Alert</h2>
+
+<p id="alertText">
+
+System Stable
+
+</p>
+
+</div>
+
+</div>
+
+<!-- POPUP -->
+
+<div id="popup" class="popup"></div>
+
+<script type="module" src="dashboard.js"></script>
+
+</body>
+
+</html>
