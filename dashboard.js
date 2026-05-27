@@ -131,6 +131,13 @@ onValue(liveRef,async(snapshot)=>{
 const data = snapshot.val();
 
 if(!data) return;
+const city = data.city || "Kolkata";
+
+const locationEl = document.getElementById("location");
+
+if(locationEl){
+locationEl.innerText = city;
+}
 
 /* VALUES */
 
