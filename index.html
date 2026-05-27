@@ -11,7 +11,8 @@
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 
 <link rel="stylesheet" href="style.css">
-
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#00ffff">
 </head>
 
 <body>
@@ -57,6 +58,19 @@ Create Account
 <div id="popup" class="popup"></div>
 
 <script type="module" src="app.js"></script>
+<script>
+if("serviceWorker" in navigator){
 
+navigator.serviceWorker
+.register("./service-worker.js")
+
+.then(()=>{
+
+console.log("AERIS PWA Ready");
+
+});
+
+}
+</script>
 </body>
 </html>
