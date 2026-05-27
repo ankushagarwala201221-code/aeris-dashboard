@@ -13,23 +13,26 @@ content="width=device-width, initial-scale=1.0">
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap"
 rel="stylesheet">
 
-<link rel="stylesheet" href="dashboard.css">
+<link rel="stylesheet"
+href="dashboard.css">
 
 </head>
 
 <body>
 
-<!-- HEADER -->
-
 <header>
 
-<h1>AERIS</h1>
+<h1>
+
+AERIS
+
+<span class="live"></span>
+
+</h1>
 
 <p>
 
-Advanced Environmental Visibility Monitoring System
-
-<span class="live"></span>
+Environmental Intelligence Platform
 
 </p>
 
@@ -67,12 +70,11 @@ Logout
 
 <div class="location-box">
 
-📍 Monitoring Location:
-Kolkata, India
+📍 Atmospheric Monitoring Active
 
 </div>
 
-<!-- DASHBOARD -->
+<!-- LIVE DATA -->
 
 <div class="container">
 
@@ -82,13 +84,7 @@ Kolkata, India
 
 <div class="value" id="temp">
 
---
-
-</div>
-
-<div class="status">
-
-Atmospheric Temperature
+0°C
 
 </div>
 
@@ -100,13 +96,7 @@ Atmospheric Temperature
 
 <div class="value" id="hum">
 
---
-
-</div>
-
-<div class="status">
-
-Relative Humidity
+0%
 
 </div>
 
@@ -118,31 +108,7 @@ Relative Humidity
 
 <div class="value" id="pm">
 
---
-
-</div>
-
-<div class="status">
-
-Air Particle Concentration
-
-</div>
-
-</div>
-
-<div class="card">
-
-<h2>📡 VRI</h2>
-
-<div class="value" id="vri">
-
---
-
-</div>
-
-<div class="status" id="vriStatus">
-
-Loading...
+0
 
 </div>
 
@@ -154,13 +120,7 @@ Loading...
 
 <div class="value" id="rain">
 
---
-
-</div>
-
-<div class="status">
-
-Rain Detection
+0
 
 </div>
 
@@ -168,29 +128,94 @@ Rain Detection
 
 <div class="card">
 
-<h2>🌙 Light</h2>
+<h2>💡 Light</h2>
 
 <div class="value" id="light">
 
---
-
-</div>
-
-<div class="status">
-
-Ambient Light
+0
 
 </div>
 
 </div>
 
+<div class="card">
+
+<h2>📡 VRI</h2>
+
+<div class="value" id="vri">
+
+0
+
 </div>
 
-<!-- ANALYTICS -->
+<div class="status" id="vriStatus">
+
+Loading...
+
+</div>
+
+</div>
+
+</div>
+
+<!-- GAUGE -->
 
 <h1 class="section-title">
 
-Live Analytics
+VRI Gauge
+
+</h1>
+
+<div class="gauge-container">
+
+<div class="gauge">
+
+<svg width="260"
+height="260">
+
+<circle
+cx="130"
+cy="130"
+r="100"
+stroke="rgba(255,255,255,0.08)"
+stroke-width="18"
+fill="none"/>
+
+<circle
+id="progressCircle"
+cx="130"
+cy="130"
+r="100"
+stroke="#00ffff"
+stroke-width="18"
+fill="none"
+stroke-linecap="round"
+stroke-dasharray="628"
+stroke-dashoffset="628"/>
+
+</svg>
+
+<div class="gauge-value">
+
+<span id="gaugeText">
+
+0
+
+</span>
+
+%
+
+</div>
+
+</div>
+
+</div>
+
+<!-- AI -->
+
+<h1 class="section-title">
+
+AI Intelligence
 
 </h1>
 
@@ -198,11 +223,15 @@ Live Analytics
 
 <div class="analytics-card">
 
-<h2>🔮 AI Prediction</h2>
+<h2>
+
+Prediction Engine
+
+</h2>
 
 <p id="predictionText">
 
-Analyzing atmosphere...
+Loading...
 
 </p>
 
@@ -210,11 +239,15 @@ Analyzing atmosphere...
 
 <div class="analytics-card">
 
-<h2>⚠ Visibility Alert</h2>
+<h2>
+
+Realtime Alerts
+
+</h2>
 
 <p id="alertText">
 
-System Stable
+Loading...
 
 </p>
 
@@ -222,11 +255,157 @@ System Stable
 
 </div>
 
+<!-- CHART -->
+
+<h1 class="section-title">
+
+Live Analytics
+
+</h1>
+
+<div class="chart-container">
+
+<canvas id="mainChart"></canvas>
+
+</div>
+
+<!-- INFO -->
+
+<h1 class="section-title">
+
+Environmental Intelligence
+
+</h1>
+
+<div class="info-grid">
+
+<div class="info-card">
+
+<img class="info-img"
+src="https://images.unsplash.com/photo-1506744038136-46273834b3fb">
+
+<h2>Atmospheric Monitoring</h2>
+
+<p>
+
+AERIS continuously monitors environmental conditions using realtime cloud analytics and intelligent atmospheric calculations.
+
+</p>
+
+</div>
+
+<div class="info-card">
+
+<img class="info-img"
+src="https://images.unsplash.com/photo-1472214103451-9374bd1c798e">
+
+<h2>Realtime Visibility Index</h2>
+
+<p>
+
+The VRI system calculates environmental visibility using PM2.5, humidity, rainfall and light intensity.
+
+</p>
+
+</div>
+
+<div class="info-card">
+
+<img class="info-img"
+src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee">
+
+<h2>AI Environmental Forecast</h2>
+
+<p>
+
+AERIS predicts atmospheric instability and pollution increase using intelligent environmental analysis.
+
+</p>
+
+</div>
+
+</div>
+
+<!-- FAQ -->
+
+<h1 class="section-title">
+
+Frequently Asked Questions
+
+</h1>
+
+<div class="faq-container">
+
+<div class="faq">
+
+<h3>
+
+What is VRI?
+
+</h3>
+
+<p>
+
+Visibility Rating Index estimates atmospheric visibility using realtime environmental data.
+
+</p>
+
+</div>
+
+<div class="faq">
+
+<h3>
+
+How does AERIS work?
+
+</h3>
+
+<p>
+
+AERIS combines realtime environmental sensors with Firebase cloud analytics and AI intelligence.
+
+</p>
+
+</div>
+
+<div class="faq">
+
+<h3>
+
+Can AERIS detect pollution?
+
+</h3>
+
+<p>
+
+Yes. PM2.5 monitoring and AI analysis help detect dangerous atmospheric conditions.
+
+</p>
+
+</div>
+
+</div>
+
+<!-- FOOTER -->
+
+<div class="footer">
+
+AERIS Environmental Intelligence Platform © 2026
+
+</div>
+
 <!-- POPUP -->
 
-<div id="popup" class="popup"></div>
+<div id="popup"
+class="popup"></div>
 
-<script type="module" src="dashboard.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script type="module"
+src="charts.js"></script>
+
+<script type="module"
+src="dashboard.js"></script>
 
 </body>
 
