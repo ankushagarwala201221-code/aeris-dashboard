@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>AERIS ADMIN PANEL</title>
+
+<link rel="stylesheet" href="admin.css">
+
+</head>
+
+<body>
+
+<header>
+
+<h1>
+
+AERIS ADMIN PANEL
+
+</h1>
+
+<p>
+
+System Control Dashboard
+
+</p>
+
+</header>
+
+<div class="admin-container">
+
+<div class="card">
+
+<h2>👥 Users</h2>
+
+<div id="userCount">
+
+0
+
+</div>
+
+</div>
+
+<div class="card">
+
+<h2>📡 Live Status</h2>
+
+<div id="systemStatus">
+
+Loading...
+
+</div>
+
+</div>
+
+<div class="card">
+
+<h2>⚠ Alerts</h2>
+
+<div id="alertCount">
+
+0
+
+</div>
+
+</div>
+
+<div class="card">
+
+<h2>🔥 System Control</h2>
+
+<button onclick="resetSystem()">
+
+Reset Live Data
+
+</button>
+
+</div>
+
+</div>
+
+<div class="panel">
+
+<h2>Live Firebase Data</h2>
+
+<pre id="liveData">
+
+Loading...
+
+</pre>
+
+</div>
+
+<script type="module" src="admin.js"></script>
+
+</body>
+
+</html>
