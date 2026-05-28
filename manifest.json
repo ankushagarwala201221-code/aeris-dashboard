@@ -1,21 +1,19 @@
 {
-  "name": "AERIS Environmental Intelligence",
+  "name": "AERIS",
   "short_name": "AERIS",
-  "description": "Realtime Environmental Monitoring Platform",
-  "start_url": "./index.html",
-  "scope": "./",
+  "start_url": "index.html",
   "display": "standalone",
-  "background_color": "#000000",
+  "background_color": "#050816",
   "theme_color": "#00ffff",
   "orientation": "portrait",
   "icons": [
     {
-      "src": "./icon-192.png",
+      "src": "icon.png",
       "sizes": "192x192",
       "type": "image/png"
     },
     {
-      "src": "./icon-512.png",
+      "src": "icon.png",
       "sizes": "512x512",
       "type": "image/png"
     }
